@@ -1,0 +1,65 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    backports (3.11.1)
+    byebug (9.1.0)
+    daemons (1.2.6)
+    diff-lcs (1.3)
+    eventmachine (1.2.5)
+    multi_json (1.13.1)
+    mustermann (1.0.1)
+    net-ldap (0.16.1)
+    rack (2.0.4)
+    rack-protection (2.0.0)
+      rack
+    rack-test (0.7.0)
+      rack (>= 1.0, < 3)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    sinatra-contrib (2.0.0)
+      backports (>= 2.0)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.0.0)
+      sinatra (= 2.0.0)
+      tilt (>= 1.3, < 3)
+    thin (1.7.2)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
+    tilt (2.0.8)
+    yard (0.9.12)
+    yard-sinatra (1.0.0)
+      yard (~> 0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  byebug
+  net-ldap
+  rack-test
+  rspec
+  sinatra
+  sinatra-contrib
+  thin
+  yard-sinatra
+
+BUNDLED WITH
+   1.15.4

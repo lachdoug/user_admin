@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: V0::Api::Controllers::Emails::DistributionGroupsController
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "V0::Api::Controllers::Emails::DistributionGroupsController";
+  relpath = '../../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../../V0.html" title="V0 (class)">V0</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Api.html" title="V0::Api (module)">Api</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Controllers.html" title="V0::Api::Controllers (module)">Controllers</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Emails.html" title="V0::Api::Controllers::Emails (module)">Emails</a></span></span>
+     &raquo; 
+    <span class="title">DistributionGroupsController</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: V0::Api::Controllers::Emails::DistributionGroupsController
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  <dl>
+      <dt>Extended by:</dt>
+      <dd>Sinatra::Extension</dd>
+  </dl>
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>v0/api/controllers/emails/distribution_groups_controller.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#DELETE___email_distribution_groups__-instance_route" title="#DELETE &#39;/email/distribution_groups/&#39; (instance route)">#<strong>DELETE &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Delete distribution_group  params  :name [String]
+&lt;local_part&gt;@&lt;domain&gt;.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#GET___email_distribution_groups_-instance_route" title="#GET &#39;/email/distribution_groups&#39; (instance route)">#<strong>GET &#39;/email/distribution_groups&#39;</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Index :distribution_groups.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#GET___email_distribution_groups__-instance_route" title="#GET &#39;/email/distribution_groups/&#39; (instance route)">#<strong>GET &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Show :distribution_group  params  :name [String]
+&lt;local_part&gt;@&lt;domain&gt;.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#POST___email_distribution_groups__-instance_route" title="#POST &#39;/email/distribution_groups/&#39; (instance route)">#<strong>POST &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create :distribution_group  params  :distribution_group [Hash]  {  
+local_part: [String],   domain: [String],   description: [String]  }.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#PUT___email_distribution_groups__-instance_route" title="#PUT &#39;/email/distribution_groups/&#39; (instance route)">#<strong>PUT &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Update distribution_group  params  :name [String]
+&lt;local_part&gt;@&lt;domain&gt;  :distribution_group [Hash] same as
+create.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="DELETE___email_distribution_groups__-instance_route">
+  
+    #<strong>DELETE &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Delete distribution_group</p>
+
+<pre class="code ruby"><code class="ruby">params
+:name [String] &lt;local_part&gt;@&lt;domain&gt;</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>empty</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'v0/api/controllers/emails/distribution_groups_controller.rb', line 66</span>
+
+<span class='id identifier rubyid_delete'>delete</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/email/distribution_groups/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_delete_email_distribution_group'>delete_email_distribution_group</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="GET___email_distribution_groups_-instance_route">
+  
+    #<strong>GET &#39;/email/distribution_groups&#39;</strong>  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Index :distribution_groups</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'v0/api/controllers/emails/distribution_groups_controller.rb', line 10</span>
+
+<span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/email/distribution_groups</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_index_email_distribution_groups'>index_email_distribution_groups</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="GET___email_distribution_groups__-instance_route">
+  
+    #<strong>GET &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Show :distribution_group</p>
+
+<pre class="code ruby"><code class="ruby">params
+:name [String] &lt;local_part&gt;@&lt;domain&gt;</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>:distribution_group</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'v0/api/controllers/emails/distribution_groups_controller.rb', line 33</span>
+
+<span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/email/distribution_groups/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_show_email_distribution_group'>show_email_distribution_group</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="POST___email_distribution_groups__-instance_route">
+  
+    #<strong>POST &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create :distribution_group</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_params'>params</span>
+<span class='symbol'>:distribution_group</span> <span class='lbracket'>[</span><span class='const'>Hash</span><span class='rbracket'>]</span>
+<span class='lbrace'>{</span>
+ <span class='label'>local_part:</span> <span class='lbracket'>[</span><span class='const'>String</span><span class='rbracket'>]</span><span class='comma'>,</span>
+ <span class='label'>domain:</span> <span class='lbracket'>[</span><span class='const'>String</span><span class='rbracket'>]</span><span class='comma'>,</span>
+ <span class='label'>description:</span> <span class='lbracket'>[</span><span class='const'>String</span><span class='rbracket'>]</span>
+<span class='rbrace'>}</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>:distribution_group</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'v0/api/controllers/emails/distribution_groups_controller.rb', line 23</span>
+
+<span class='id identifier rubyid_post'>post</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/email/distribution_groups/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_create_email_distribution_group'>create_email_distribution_group</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:local_part</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:domain</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_show_email_distribution_group'>show_email_distribution_group</span> <span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="PUT___email_distribution_groups__-instance_route">
+  
+    #<strong>PUT &#39;/email/distribution_groups/&#39;</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Update distribution_group</p>
+
+<pre class="code ruby"><code class="ruby">params
+:name [String] &lt;local_part&gt;@&lt;domain&gt;
+:distribution_group [Hash] same as create</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>distribution_group details</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'v0/api/controllers/emails/distribution_groups_controller.rb', line 51</span>
+
+<span class='id identifier rubyid_put'>put</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/email/distribution_groups/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_update_email_distribution_group'>update_email_distribution_group</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='lparen'>(</span>
+    <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:local_part</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
+    <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:domain</span><span class='rbracket'>]</span>
+    <span class='rparen'>)</span> <span class='op'>?</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:local_part</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:distribution_group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:domain</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span>
+    <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_ldap'>ldap</span><span class='period'>.</span><span class='id identifier rubyid_show_email_distribution_group'>show_email_distribution_group</span> <span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Feb 25 10:22:55 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>
