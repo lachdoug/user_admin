@@ -12,7 +12,8 @@ Sinatra (module style, with config.ru)
 
 Services
 --------
-Neds LDAP
+Neds LDAP.
+
 No DB. No Volumes.
 
 Tests

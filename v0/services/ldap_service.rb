@@ -29,12 +29,13 @@ class V0
       # end
 
       def net_ldap
-        auth = {
-          :method => :simple,
-          :username => "cn=admin,dc=engines,dc=internal",
-          :password => "password"
-        }
-        Net::LDAP.open(host: "ldap", auth: auth) do |conn|
+        # auth = {
+        #   :method => :simple,
+        #   :username => "cn=admin,dc=engines,dc=internal",
+        #   :password => "password"
+        # }
+        #, auth: auth
+        Net::LDAP.open(host: "ldap") do |conn|
           yield conn
         end
       end

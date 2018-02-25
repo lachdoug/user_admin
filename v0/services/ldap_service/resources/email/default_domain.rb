@@ -20,7 +20,6 @@ class V0
                     create_email_default_domain_query( ldap, default_domain[:name] )
                   return default_domain
                 rescue Error => e
-                  byebug
                   ldap_op_error( ldap, "Failed to create email default domain." )
                 end
               end
