@@ -17,5 +17,13 @@ config.ru
 require_relative 'v0/module'  
 map('/') { run V0 }  
 
+Tests
+-----
+`bundle exec rspec test.rb`
+
+Docs
+----
+`/doc/top-level-namespace.html`
+
 Environment
 -----------
