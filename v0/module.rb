@@ -16,7 +16,7 @@ class V0 < Sinatra::Base
 
   set dump_errors: Sinatra::Base.development?
   set public_folder: 'public'
-  set ldap_admin_keytab_path: ENV['ENGINES_ADMIN_GUI_KERBEROS_LDAP_KEYTAB_PATH'] || "/etc/krb5kdc/keys/control.keytab"
+  # set ldap_admin_keytab_path: ENV['ENGINES_ADMIN_GUI_KERBEROS_LDAP_KEYTAB_PATH'] || "/etc/krb5kdc/keys/control.keytab"
   set show_exceptions: false
 
   # Services
