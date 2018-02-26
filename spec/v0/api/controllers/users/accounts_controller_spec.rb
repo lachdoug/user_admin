@@ -1,5 +1,12 @@
 describe V0::Api::Controllers::Users::AccountsController do
 
+  it 'index :users :accounts does not include "testuser"' do
+    get '/users/accounts'
+    expect( response ).to be_a( Array )
+    @account = response.find{ |user| user[:uid] == 'testuser' }
+    expect( @account ).to eq( nil )
+  end
+
   it 'create :users :account' do
     post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User' }
     expect( response[:uid] ).to eq( 'testuser' )
@@ -8,10 +15,16 @@ describe V0::Api::Controllers::Users::AccountsController do
     expect( response[:last_name] ).to eq( 'User' )
   end
 
-  it 'index :users :accounts includes :user' do
+  it 'index :users :accounts includes "testuser"' do
+    get '/users/accounts'
+    @account = response.find{ |user| user[:uid] == 'testuser' }
+    expect( @account[:name] ).to eq( 'Test User' )
+  end
+
+  it 'show :users includes :accounts "testuser"' do
     get '/users'
-    @user = response[:accounts].find{ |user| user[:uid] == 'testuser' }
-    expect( @user[:name] ).to eq( 'Test User' )
+    @account = response[:accounts].find{ |user| user[:uid] == 'testuser' }
+    expect( @account[:name] ).to eq( 'Test User' )
   end
 
   it 'show :users :account' do

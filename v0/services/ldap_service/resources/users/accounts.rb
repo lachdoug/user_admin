@@ -14,6 +14,12 @@ class V0
             include Signins
 
 
+            def index_users_accounts
+              net_ldap do |ldap|
+                index_users_accounts_query ldap
+              end
+            end
+
             def show_users_account(uid)
               net_ldap do |ldap|
                 show_users_account_query ldap, uid
