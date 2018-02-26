@@ -6,8 +6,6 @@ gem 'thin'
 gem 'net-ldap'
 gem 'yard-sinatra'
 
-gem 'net-ldap'
-
 # gem 'rkerberos'
 # gem 'kerberos_authenticator'
 

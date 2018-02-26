@@ -7,9 +7,9 @@ class V0 < Sinatra::Base
 
   # Output request details for debugging in development
   before do
-    if Sinatra::Base.development?
+    # if Sinatra::Base.development?
       puts "Request #{request.request_method} #{request.path_info} #{params.inspect}"
-    end
+    # end
   end
 
   # Settings
