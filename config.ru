@@ -1,2 +1,2 @@
 require_relative 'v0/module'
-map('/') { run V0 }
+map('/v0') { run V0 }
