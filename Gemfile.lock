@@ -10,6 +10,8 @@ GEM
     mustermann (1.0.1)
     net-ldap (0.16.1)
     rack (2.0.4)
+    rack-contrib (2.0.1)
+      rack (~> 2.0)
     rack-protection (2.0.0)
       rack
     rack-test (0.7.0)
@@ -54,6 +56,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   net-ldap
+  rack-contrib
   rack-test
   rspec
   sinatra

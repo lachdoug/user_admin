@@ -5,6 +5,7 @@ gem 'thin'
 # gem 'rest-client'
 gem 'net-ldap'
 gem 'yard-sinatra'
+# gem 'rack-contrib'
 
 # gem 'rkerberos'
 # gem 'kerberos_authenticator'

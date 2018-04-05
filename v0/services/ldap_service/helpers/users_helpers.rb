@@ -9,7 +9,7 @@ class V0
               Net::LDAP::Filter.eq( "objectclass", "posixAccount" ) &
               Net::LDAP::Filter.eq( "uid", uid )
             base = "ou=People,dc=engines,dc=internal"
-            ldap.search(:base => base, :filter => filter )[0].tap do |result|
+            ( ldap.search(:base => base, :filter => filter ) || [] )[0].tap do |result|
               entry_missing_error unless result
             end
           end

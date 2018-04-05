@@ -14,6 +14,7 @@ class V0 < Sinatra::Base
 
   # Settings
 
+  set logging: true
   set dump_errors: Sinatra::Base.development?
   set public_folder: 'public'
   # set ldap_admin_keytab_path: ENV['ENGINES_ADMIN_GUI_KERBEROS_LDAP_KEYTAB_PATH'] || "/etc/krb5kdc/keys/control.keytab"
@@ -60,7 +61,7 @@ class V0 < Sinatra::Base
 
   error do |error|
     return [ 405, { error: { message: error.message } } ] if error.is_a? LdapService::Error
-    [ 500, { error: { message: error.message } } ]
+    [ 500, { error: { message: error.message, backtrace: error.backtrace } } ]
   end
 
 end
