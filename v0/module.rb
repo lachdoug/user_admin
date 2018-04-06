@@ -23,7 +23,8 @@ class V0 < Sinatra::Base
   before do
     if request.content_type == 'application/json'
       request.body.rewind
-      params.merge! JSON.parse( request.body.read )
+      body = request.body.read
+      params.merge! JSON.parse( body ) unless body == ""
     end
   end
 
