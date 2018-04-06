@@ -1,11 +1,11 @@
 require 'sinatra/base'
 require 'sinatra/extension'
 require 'sinatra/json'
-require 'rack/contrib'
 require 'byebug' if Sinatra::Base.development?
 
 class V0 < Sinatra::Base
 
+  require 'rack/contrib'
   # Automatically parse JSON params
   use Rack::PostBodyContentTypeParser
 
