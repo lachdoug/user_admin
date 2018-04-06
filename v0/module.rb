@@ -19,9 +19,10 @@ class V0 < Sinatra::Base
 
   # Parse JSON params
   before do
-    if request.content_type == 'application/json' &&
-      ( request.request_method == 'POST' ||
-        request.request_method == 'PUT' )
+    if request.content_type == 'application/json'
+      #  &&
+      # ( request.request_method == 'POST' ||
+      #   request.request_method == 'PUT' )
       request.body.rewind
       params.merge! JSON.parse( request.body.read )
     end
