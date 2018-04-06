@@ -14,7 +14,7 @@ gem 'sinatra-contrib'
 # gem "gssapi"
 
 group :test do
-  gem 'rack-test'
+  # gem 'rack-test'
   gem 'rspec'
   gem 'byebug'
 end

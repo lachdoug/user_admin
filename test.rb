@@ -33,6 +33,8 @@ def get *args
 end
 
 def post *args
+  args[1] = args[1].to_json
+  args << { 'CONTENT_TYPE' => "application/json" }
   clear_response
   super
 end

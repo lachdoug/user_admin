@@ -16,6 +16,7 @@ class V0
           #  :account [Hash] new :users :account data
           # @return [Hash] :users :account
           post '/users/accounts/' do
+            logger.info "Request #{request.request_method} #{request.path_info} #{params.inspect}"
             ldap.create_users_account params[:account]
             ldap.show_users_account params[:account][:uid]
           end

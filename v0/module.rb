@@ -1,15 +1,19 @@
 require 'sinatra/base'
 require 'sinatra/extension'
 require 'sinatra/json'
+require 'rack/contrib'
 require 'byebug' if Sinatra::Base.development?
 
 class V0 < Sinatra::Base
 
+  # Automatically parse JSON params
+  use Rack::PostBodyContentTypeParser
+
   # Output request details for debugging in development
   before do
-    # if Sinatra::Base.development?
-      logger.info "Request #{request.content_type} #{request.body.read} #{request.request_method} #{request.path_info} #{params.inspect}"
-    # end
+    if Sinatra::Base.development?
+      puts "Request #{request.request_method} #{request.path_info} #{params.inspect}"
+    end
   end
 
   # Settings
