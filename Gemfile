@@ -5,7 +5,7 @@ gem 'thin'
 # gem 'rest-client'
 gem 'net-ldap'
 gem 'yard-sinatra'
-# gem 'rack-contrib'
+gem 'sinatra-contrib'
 
 # gem 'rkerberos'
 # gem 'kerberos_authenticator'
@@ -14,7 +14,6 @@ gem 'yard-sinatra'
 # gem "gssapi"
 
 group :test do
-  gem 'sinatra-contrib'
   gem 'rack-test'
   gem 'rspec'
   gem 'byebug'
