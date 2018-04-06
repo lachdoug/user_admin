@@ -5,7 +5,7 @@ gem 'thin'
 # gem 'rest-client'
 gem 'net-ldap'
 gem 'yard-sinatra'
-gem 'rack-contrib'
+# gem 'rack-contrib'
 # gem 'sinatra-contrib'
 
 # gem 'rkerberos'

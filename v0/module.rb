@@ -5,15 +5,25 @@ require 'byebug' if Sinatra::Base.development?
 
 class V0 < Sinatra::Base
 
-  require 'rack'
-  require 'rack/contrib'
+  # require 'rack'
+  # require 'rack/contrib'
   # Automatically parse JSON params
-  use Rack::PostBodyContentTypeParser
+  # use Rack::PostBodyContentTypeParser
 
   # Output request details for debugging in development
   before do
     if Sinatra::Base.development?
       puts "Request #{request.request_method} #{request.path_info} #{params.inspect}"
+    end
+  end
+
+  # Parse JSON params
+  before do
+    if request.content_type == 'application/json' &&
+      ( request.request_method == 'POST' ||
+        request.request_method == 'PUT' )
+      request.body.rewind
+      params.merge! JSON.parse( request.body.read )
     end
   end
 
