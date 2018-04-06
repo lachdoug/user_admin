@@ -13,9 +13,9 @@ class V0 < Sinatra::Base
   # Output request details for debugging in development
   before do
     if Sinatra::Base.production?
-      logger.info "Request #{request.body.rewind; request.body.read} #{request.request_method} #{request.path_info} #{params.inspect}"
+      logger.info "Request #{request.body.rewind; request.body.read.class} #{request.request_method} #{request.path_info} #{params.inspect}"
     else
-      puts "Request #{request.body.rewind; request.body.read} #{request.request_method} #{request.path_info} #{params.inspect}"
+      puts "Request #{request.body.rewind; request.body.read.class} #{request.request_method} #{request.path_info} #{params.inspect}"
     end
   end
 
