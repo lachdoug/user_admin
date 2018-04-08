@@ -11,17 +11,17 @@ class V0
             #  :user_uid [String]
             #  :group [Hash] { name: [String] }
             # @return [Hash] :users :account :group
-            post '/users/accounts/groups/' do
-              ldap.create_users_account_group params[:user_uid], params[:group]
+            post '/users/accounts/groups' do
+              ldap.create_users_account_groups params[:user_uid], params[:groups]
             end
 
             # Delete :users :account :group
             #  params
             #  :user_uid [String]
-            #  :name [String] group name
+            #  :names [Array] group names
             # @return [Hash] {}
-            delete '/users/accounts/groups/' do
-              ldap.delete_users_account_group params[:user_uid], params[:name]
+            delete '/users/accounts/groups' do
+              ldap.delete_users_account_groups params[:user_uid], params[:names]
             end
 
           end

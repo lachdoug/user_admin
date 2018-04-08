@@ -1,7 +1,7 @@
 describe V0::Api::Controllers do
 
   it 'Remove artifacts that may remain from previous failed tests.' do
-      delete! '/users/accounts/groups/', user_uid: 'testuser', name: 'Users'
+      delete! '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
       delete! '/users/accounts/', uid: 'testuser'
       delete! '/email/domains/', name: 'testdomain.fake'
       delete! '/email/domains/', name: 'testdomain1.fake'

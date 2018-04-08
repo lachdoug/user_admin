@@ -5,20 +5,20 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
     expect( response[:groups] ).to include( 'Users' )
   end
 
-  it 'deletes, creates, deletes :users :account :group "Users"' do
-    delete '/users/accounts/groups/', user_uid: 'testuser', name: 'Users'
+  it 'deletes, creates, deletes :users :account :groups' do
+    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
     expect( response ).to eq( {} )
 
     get '/users/accounts/', uid: 'testuser'
     expect( response[:groups] ).to_not include( 'Users' )
 
-    post '/users/accounts/groups/', user_uid: 'testuser', group: { name: 'Users' }
+    post '/users/accounts/groups', user_uid: 'testuser', groups: [{ name: 'Users' }]
     expect( response ).to eq( { name: 'Users' } )
 
     get '/users/accounts/', uid: 'testuser'
     expect( response[:groups] ).to include( 'Users' )
 
-    delete '/users/accounts/groups/', user_uid: 'testuser', name: 'Users'
+    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
     expect( response ).to eq( {} )
 
     get '/users/accounts/', uid: 'testuser'
