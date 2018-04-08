@@ -14,14 +14,17 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
 
     get '/users/accounts/groups/new', user_uid: 'testuser'
     expect( response[:groups] ).to include( 'Users' )
+    expect( response[:groups] ).to include( 'data_access' )
 
-    post '/users/accounts/groups', user_uid: 'testuser', groups: [{ name: 'Users' }]
-    expect( response ).to eq( { name: 'Users' } )
+    post '/users/accounts/groups', user_uid: 'testuser', groups: [ { name: 'Users' }, { name: "data_access"} ]
+    expect( response ).to include( { name: 'Users' } )
+    expect( response ).to include( { name: 'data_access' } )
 
     get '/users/accounts/', uid: 'testuser'
     expect( response[:groups] ).to include( 'Users' )
+    expect( response[:groups] ).to include( 'data_access' )
 
-    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
+    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users', 'data_access']
     expect( response ).to eq( {} )
 
     get '/users/accounts/', uid: 'testuser'

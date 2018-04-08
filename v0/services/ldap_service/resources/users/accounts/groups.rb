@@ -17,13 +17,13 @@ class V0
 
               def create_users_account_groups( user_uid, groups )
                 net_ldap do |ldap|
-                  groups.each do |group|
-                    begin
+                  begin
+                    groups.each do |group|
                       raise Error unless create_users_account_group_query( ldap, user_uid, group[:name] )
-                      return group
-                    rescue Error => e
-                      ldap_op_error( ldap, "Failed to create account group" )
                     end
+                    return groups
+                  rescue Error => e
+                    ldap_op_error( ldap, "Failed to create account group" )
                   end
                 end
               end
