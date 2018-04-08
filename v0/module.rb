@@ -12,7 +12,7 @@ class V0 < Sinatra::Base
 
   # Output request details for debugging in development
   before do
-    log "Request #{request.query_string} #{request.body.rewind; request.body.read.length} #{request.request_method} #{request.path_info} #{params.inspect}"
+    log "Request #{request.query_string} #{request.body.rewind; request.body.read} #{request.request_method} #{request.path_info} #{params.inspect}"
   end
 
   def log text
@@ -80,7 +80,7 @@ class V0 < Sinatra::Base
   end
 
   error do |error|
-    log "ERROR: #{error.inspect}"
+    # log "ERROR: #{error.inspect}"
     return [ 405, { error: { message: error.message } } ] if error.is_a? LdapService::Error
     [ 500, { error: { message: error.message, backtrace: error.backtrace } } ]
   end
