@@ -6,7 +6,6 @@ class V0
           module GroupsQueries
 
             def index_users_groups_query( ldap )
-
               result = []
               ldap.search(
                 filter: Net::LDAP::Filter.eq( "objectClass", "posixGroup" ),

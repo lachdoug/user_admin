@@ -6,7 +6,15 @@ class V0
           module GroupsController
             extend Sinatra::Extension
 
-            # Create :users :account :group
+            # New :users :account :groups
+            #  params
+            #  :user_uid [String]
+            # @return [Hash] :groups (that are available to be created)
+            get '/users/accounts/groups/new' do
+              ldap.new_users_account_groups params[:user_uid]
+            end
+
+            # Create :users :account :groups
             #  params
             #  :user_uid [String]
             #  :group [Hash] { name: [String] }
@@ -15,7 +23,7 @@ class V0
               ldap.create_users_account_groups params[:user_uid], params[:groups]
             end
 
-            # Delete :users :account :group
+            # Delete :users :account :groups
             #  params
             #  :user_uid [String]
             #  :names [Array] group names

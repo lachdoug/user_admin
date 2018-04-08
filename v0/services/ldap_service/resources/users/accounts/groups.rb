@@ -6,6 +6,15 @@ class V0
           module Accounts
             module Groups
 
+              def new_users_account_groups( user_uid )
+                net_ldap do |ldap|
+                  existing_groups = index_users_account_groups_query(ldap, user_uid)
+                  all_groups = index_users_groups_query( ldap )
+                  available_groups = all_groups - existing_groups
+                  return { groups: available_groups }
+                end
+              end
+
               def create_users_account_groups( user_uid, groups )
                 net_ldap do |ldap|
                   groups.each do |group|

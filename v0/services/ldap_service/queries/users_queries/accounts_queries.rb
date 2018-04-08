@@ -69,13 +69,13 @@ class V0
             end
 
 
-            def update_users_account_query(ldap, uid, data)
+            def update_users_account_query(ldap, uid, user)
 
               entry = find_user_entry_helper ldap, uid
-              newrdn = "cn=#{data[:first_name]} #{data[:last_name]}"
+              newrdn = "cn=#{user[:first_name]} #{user[:last_name]}"
 
-              replace_attribute_value_on_entry_helper( ldap, entry, "givenname", data[:first_name] ) &&
-              replace_attribute_value_on_entry_helper( ldap, entry, "sn", data[:last_name] ) &&
+              replace_attribute_value_on_entry_helper( ldap, entry, "givenname", user[:first_name] ) &&
+              replace_attribute_value_on_entry_helper( ldap, entry, "sn", user[:last_name] ) &&
               update_entry_rdn_helper( ldap, entry, newrdn )
 
             end

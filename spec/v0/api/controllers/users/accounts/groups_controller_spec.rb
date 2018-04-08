@@ -12,6 +12,9 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
     get '/users/accounts/', uid: 'testuser'
     expect( response[:groups] ).to_not include( 'Users' )
 
+    get '/users/accounts/groups/new', user_uid: 'testuser'
+    expect( response[:groups] ).to include( 'Users' )
+
     post '/users/accounts/groups', user_uid: 'testuser', groups: [{ name: 'Users' }]
     expect( response ).to eq( { name: 'Users' } )
 
