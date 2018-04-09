@@ -60,7 +60,7 @@ class V0
           prepend_message,
           ldap.get_operation_result.message,
           ldap.get_operation_result.error_message
-        ] - [ "Success", "" ] ).compact
+        ] - [ "Success", "" ] ).compact.join
       end
 
       def entry_missing_error
