@@ -50,8 +50,8 @@ describe V0::Api::Controllers::Emails::DistributionGroupsController do
   end
 
   it 'cleanup after tests' do
-    delete '/email/domains/', name: 'testdomain.fake'
-    delete '/email/default_domain'
+    delete! '/email/domains/', name: 'testdomain.fake'
+    delete! '/email/default_domain'
   end
 
 end
