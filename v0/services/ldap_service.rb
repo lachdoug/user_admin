@@ -56,11 +56,11 @@ class V0
 
 
       def ldap_op_error(ldap, prepend_message)
-        raise Error::Operation.new [
+        raise Error::Operation.new ( [
           prepend_message,
           ldap.get_operation_result.message,
           ldap.get_operation_result.error_message
-        ].compact
+        ] - [ "Success", "" ] ).compact
       end
 
       def entry_missing_error

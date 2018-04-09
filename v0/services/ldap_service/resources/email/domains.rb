@@ -19,7 +19,7 @@ class V0
             def delete_email_domain( name )
               net_ldap do |ldap|
                 email = show_email_query( ldap )
-                raise Error.new "Email domains default must be deleted last." if ( name == email[:default_domain] ) && ( email[:domains].length > 1 )
+                raise Error.new "Default email domain must be deleted last." if ( name == email[:default_domain] ) && ( email[:domains].length > 1 )
                 begin
                   raise Error unless delete_email_domain_query( ldap, name )
                   return {}
