@@ -71,6 +71,7 @@ class V0 < Sinatra::Base
   after do
     content_type :json
     response.body = response.body.to_json # JSON.dump(response.body)
+    log response.body
   end
 
   # Handle errors
