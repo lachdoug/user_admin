@@ -5,11 +5,11 @@ class V0
         module DomainsController
           extend Sinatra::Extension
 
-          # # Index :email:domains
-          # # @return [Hash] index of email_domains
-          # get '/email/domains' do
-          #   ldap.index_email_domains
-          # end
+                  # # Index :email:domains
+                  # # @return [Hash] index of email_domains
+                  # get '/email/domains' do
+                  #   ldap.index_email_domains
+                  # end
 
           # Create :email :domain
           #  params

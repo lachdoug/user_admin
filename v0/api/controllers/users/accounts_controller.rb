@@ -45,7 +45,6 @@ class V0
           # @return [Hash] {}
           delete '/users/accounts/' do
             ldap.delete_users_account params[:uid]
-            # {}
           end
 
         end
