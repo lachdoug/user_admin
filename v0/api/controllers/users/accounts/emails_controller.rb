@@ -18,6 +18,14 @@ class V0
               ldap.create_users_account_email params[:user_uid], params[:email]
             end
 
+            # Edit :users :account :email
+            #  params
+            #  :user_uid [String]
+            # @return [Hash] :users :account :email
+            get '/users/accounts/email/edit' do
+              ldap.edit_users_account_email params[:user_uid]
+            end
+
             # Update :users :account :email
             #  params
             #  :user_uid [String]

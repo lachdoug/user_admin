@@ -24,6 +24,12 @@ class V0
                 end
               end
 
+              def edit_users_account_email( user_uid )
+                net_ldap do |ldap|
+                  edit_users_account_email_query( ldap, user_uid )
+                end
+              end
+
               def update_users_account_email( user_uid, email )
                 net_ldap do |ldap|
                   begin

@@ -37,6 +37,17 @@ class V0
                 add_attribute_value_to_entry_helper ldap, entry, "maildrop", email_address
               end
 
+              def edit_users_account_email_query( ldap, user_uid )
+                entry = find_user_entry_helper ldap, user_uid
+                mailbox = user_mailbox_helper ldap, entry
+                email_domain = mailbox.split('@')[1]
+                email_domains = index_email_domains_query ldap
+                {
+                  domain_name: domain,
+                  email_domains: domains
+                }
+              end
+
               def update_users_account_email_query ( ldap, user_uid, email )
                 entry = find_user_entry_helper ldap, user_uid
                 email_address = "#{user_uid}@#{email[:domain_name]}"

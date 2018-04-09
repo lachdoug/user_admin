@@ -14,6 +14,9 @@ describe V0::Api::Controllers::Users::Accounts::EmailsController do
   end
 
   it 'Updates :users :account :email' do
+    get '/users/accounts/email/edit', user_uid: 'testuser'
+    expect( response[:domain_name] ).to eq( 'testdomain.fake' )
+    expect( response[:email_domains] ).to include( 'testdomain.fake' )
     put '/users/accounts/email', user_uid: 'testuser', email: { domain_name: 'testdomain1.fake' }
     expect( response[:domain_name] ).to eq( 'testdomain1.fake' )
     get '/users/accounts/', uid: 'testuser'
