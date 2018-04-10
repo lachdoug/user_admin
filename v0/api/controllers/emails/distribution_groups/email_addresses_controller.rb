@@ -6,6 +6,15 @@ class V0
           module EmailAddressesController
             extend Sinatra::Extension
 
+            # New :distribution_group :email_address
+            #
+            #  params
+            #  :distribution_group_name [String]
+            # @return [Hash]
+            get '/email/distribution_groups/email_addresses/new' do
+              ldap.new_email_distribution_group_email_address( params[:distribution_group_name] )
+            end
+
             # Create :distribution_group :email_address
             #
             #  params

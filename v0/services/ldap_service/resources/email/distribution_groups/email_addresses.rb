@@ -6,16 +6,16 @@ class V0
           module DistributionGroups
             module EmailAddresses
 
-              # def new_email_distribution_group_email_address( distribution_list_name )
-              #   net_ldap do |ldap|
-              #     mailbox_and_alias_email_addresses =
-              #       email_mailboxes_email_addresses_helper(ldap).map{ |email_address| email_address[:email_address] } +
-              #       email_aliases_email_addresses_helper(ldap).map{ |email_address| email_address[:email_address] }
-              #     existing_email_addresses =
-              #       distribution_list_helper(ldap, distribution_list_name)[:email_addresses]
-              #     { email_addresses: mailbox_and_alias_email_addresses - existing_email_addresses }
-              #   end
-              # end
+              def new_email_distribution_group_email_address( distribution_list_name )
+                net_ldap do |ldap|
+                  mailbox_and_alias_email_addresses =
+                    index_email_mailboxes_email_addresses_query(ldap).map{ |email_address| email_address[:email_address] } +
+                    index_email_aliases_email_addresses_query(ldap).map{ |email_address| email_address[:email_address] }
+                  existing_email_addresses =
+                    show_email_distribution_group_query(ldap, distribution_list_name)[:email_addresses]
+                  { email_addresses: mailbox_and_alias_email_addresses - existing_email_addresses }
+                end
+              end
 
               # args
               #  :distribution_list_name [String]
