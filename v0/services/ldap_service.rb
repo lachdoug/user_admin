@@ -35,14 +35,14 @@ class V0
           :password => "password"
         }
 
-        Net::LDAP.open(host: "ldap", auth: auth) do |conn|
-          begin
+        begin
+          Net::LDAP.open(host: "ldap", auth: auth) do |conn|
             yield conn
-          rescue => e
-            log e
-            raise Error.new e.to_s
           end
+        rescue Net::LDAP::ConnectionRefusedError => e
+          raise Error.new "Failed to connect to LDAP service."
         end
+
       end
       #
       # def debug(output)
