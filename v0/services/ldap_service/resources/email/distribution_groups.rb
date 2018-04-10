@@ -27,7 +27,7 @@ class V0
                   raise Error unless create_email_distribution_group_query( ldap, distribution_group )
                   return distribution_group
                 rescue Error => e
-                  ldap_op_error( ldap, "Failed to create distribution list." )
+                  ldap_op_error( ldap, "Failed to create distribution group." )
                 end
               end
             end
@@ -44,7 +44,7 @@ class V0
                   raise Error unless update_email_distribution_group_query( ldap, name, distribution_group )
                   return distribution_group
                 rescue Error => e
-                  ldap_op_error( ldap, "Failed to update distribution list." )
+                  ldap_op_error( ldap, "Failed to update distribution group." )
                 end
               end
             end
@@ -70,7 +70,7 @@ class V0
                   delete_email_distribution_group_query( ldap, name )
                   return {}
                 rescue Error => e
-                  ldap_op_error( ldap, "Failed to delete distribution list." )
+                  ldap_op_error( ldap, "Failed to delete distribution group." )
                 end
               end
             end

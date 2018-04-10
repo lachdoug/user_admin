@@ -7,15 +7,18 @@ class V0
 
             require_relative 'accounts_queries/email_queries'
             require_relative 'accounts_queries/groups_queries'
+            require_relative 'accounts_queries/password_queries'
 
             include EmailQueries
             include GroupsQueries
+            include PasswordQueries
 
             def create_users_account_query( ldap, user )
               uid = user[:uid]
               cn = "#{user[:first_name]} #{user[:last_name]}"
               dn = "cn=#{cn},ou=People,dc=engines,dc=internal"
               uidnumber = next_available_uidnumber_helper ldap
+              sha_password = '{SHA}' + Base64.encode64(Digest::SHA1.digest( user[:password] )).chomp!
 
               attributes = {
                 uidnumber: uidnumber,
@@ -30,7 +33,7 @@ class V0
                   "top" ],
                 sn: user[:last_name],
                 uid: uid,
-                userpassword: "{SASL}#{uid}@ENGINES.INTERNAL",
+                userpassword: sha_password,
               }
 
               if ldap.add dn: dn, attributes: attributes

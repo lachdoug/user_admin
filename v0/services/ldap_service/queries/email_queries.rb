@@ -7,10 +7,12 @@ class V0
           require_relative 'email_queries/default_domain_queries'
           require_relative 'email_queries/distribution_groups_queries'
           require_relative 'email_queries/domains_queries'
+          require_relative 'email_queries/email_addresses_queries'
 
           include DefaultDomainQueries
           include DistributionGroupsQueries
           include DomainsQueries
+          include EmailAddressesQueries
 
           def show_email_query( ldap )
             {

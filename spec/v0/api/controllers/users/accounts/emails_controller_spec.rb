@@ -2,7 +2,7 @@ describe V0::Api::Controllers::Users::Accounts::EmailsController do
 
   it 'Sets up for tests' do
     post '/email/default_domain', default_domain: { name: 'testdomain.fake' }
-    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User' }
+    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User', password: '123' }
     expect( response[:email] ).to eq( {} )
   end
 

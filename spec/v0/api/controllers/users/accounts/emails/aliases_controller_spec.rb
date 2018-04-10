@@ -2,7 +2,7 @@ describe V0::Api::Controllers::Users::Accounts::Emails::AliasesController do
 
   it 'Sets up for tests' do
     post '/email/default_domain', default_domain: { name: 'testdomain.fake' }
-    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User' }
+    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User', password: '123' }
     post '/users/accounts/email', user_uid: 'testuser', email: { domain_name: 'testdomain.fake' }
   end
 

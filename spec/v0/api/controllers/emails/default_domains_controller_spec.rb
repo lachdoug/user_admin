@@ -51,6 +51,4 @@ describe V0::Api::Controllers::Emails::DefaultDomainsController do
     expect( response ).to eq( {} )
   end
 
-
-
 end

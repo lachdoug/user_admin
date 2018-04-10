@@ -2,7 +2,7 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
 
   it 'Sets up for tests' do
     post '/email/default_domain', default_domain: { name: 'testdomain.fake' }
-    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User' }
+    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User', password: '123' }
     post '/users/accounts/email', user_uid: 'testuser', email: { domain_name: 'testdomain.fake' }
     post '/email/distribution_groups/', distribution_group: {
       local_part: 'testdistribution',
@@ -29,11 +29,11 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
 
 
   it 'Cleans up after tests' do
-    delete! '/email/default_domain'
-    delete! '/email/domains/', name: 'testdomain.fake'
-    delete! '/users/accounts/email', user_uid: 'testuser'
-    delete! '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
-    delete! '/users/accounts/', uid: 'testuser'
+    delete '/email/default_domain'
+    delete '/email/domains/', name: 'testdomain.fake'
+    delete '/users/accounts/email', user_uid: 'testuser'
+    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
+    delete '/users/accounts/', uid: 'testuser'
   end
 
 end

@@ -7,10 +7,12 @@ class V0
 
             require_relative 'accounts/email'
             require_relative 'accounts/groups'
+            require_relative 'accounts/password'
             require_relative 'accounts/signins'
 
             include Email
             include Groups
+            include Password
             include Signins
 
 
@@ -51,6 +53,8 @@ class V0
             def delete_users_account(uid)
               net_ldap do |ldap|
                 begin
+                  raise Error unless index_users_account_groups_query(ldap, uid).empty?
+                  raise Error unless show_users_account_email_query( ldap, uid ).empty?
                   raise Error unless delete_users_account_query( ldap, uid )
                   return {}
                 rescue Error => e

@@ -1,7 +1,7 @@
 describe V0::Api::Controllers::Users::Accounts::GroupsController do
 
   it 'creates :users :account and :groups includes "Users"' do
-    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User' }
+    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User', password: '123' }
     expect( response[:groups] ).to include( 'Users' )
   end
 
