@@ -36,7 +36,12 @@ class V0
         }
 
         Net::LDAP.open(host: "ldap", auth: auth) do |conn|
-          yield conn
+          begin
+            yield conn
+          rescue => e
+            log e
+            raise Error.new e.to_s
+          end
         end
       end
       #
