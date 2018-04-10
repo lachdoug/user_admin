@@ -37,6 +37,7 @@ class V0
               #  :address [String]
               # @return [Hash] {}
               def delete_email_distribution_group_email_address( distribution_list_name, address )
+                # raise Error.new "Requires address." unless address
                 net_ldap do |ldap|
                   begin
                     raise Error unless delete_email_distribution_group_email_address_query( ldap, distribution_list_name, address )
