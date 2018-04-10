@@ -7,6 +7,14 @@ class V0
             module DistributionGroupsController
               extend Sinatra::Extension
 
+              # New :users :email :distribution_group
+              #  params
+              #  :user_uid [String]
+              # @return [Hash] available groups { distribution_groups: [String] }
+              get '/users/accounts/email/distribution_groups/new' do
+                ldap.new_users_account_email_distribution_group params[:user_uid]
+              end
+
               # Create :users :email :distribution_group
               #  params
               #  :user_uid [String]

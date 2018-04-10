@@ -28,7 +28,7 @@ class V0
               base = "ou=Distribution Groups,dc=engines,dc=internal"
               ldap.search(:base => base, :filter => filter ) do |entry|
                 result << {
-                  group: entry.cn[0],
+                  name: entry.cn[0],
                   email_address: email_address
                 }
               end

@@ -11,17 +11,20 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
     }
   end
 
-  it 'Shows :email :distribution_group does not yet have :email_address' do
+  it 'Shows :email :distribution_group does not yet have :user :mailbox' do
     get '/email/distribution_groups/', name: "testdistribution@testdomain.fake"
     expect( response[:email_addresses] ).to_not include( "testuser@testdomain.fake" )
   end
 
   it 'Creates :users :account :email :distribution_group' do
+    get '/users/accounts/email/distribution_groups/new', user_uid: 'asassasa'
+    expect( response[:distribution_groups] ).to include( 'testdistribution@testdomain.fake' )
+
     post '/users/accounts/email/distribution_groups/', user_uid: 'testuser', distribution_group: { name: 'testdistribution@testdomain.fake' }
     expect( response[:name] ).to eq( 'testdistribution@testdomain.fake' )
     get '/users/accounts/', uid: 'testuser'
     expect( response[:email][:distribution_groups] ).to include({
-      group: 'testdistribution@testdomain.fake', email_address: "testuser@testdomain.fake"
+      name: 'testdistribution@testdomain.fake', email_address: "testuser@testdomain.fake"
     })
   end
 
@@ -36,7 +39,7 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
 
     get '/users/accounts/', uid: 'testuser'
     expect( response[:email][:distribution_groups] ).to_not include({
-      group: 'testdistribution@testdomain.fake', email_address: "testuser@testdomain.fake"
+      name: 'testdistribution@testdomain.fake', email_address: "testuser@testdomain.fake"
     })
   end
 

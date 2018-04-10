@@ -7,6 +7,12 @@ class V0
             module Email
               module DistributionGroups
 
+                def new_users_account_email_distribution_group( user_uid )
+                  net_ldap do |ldap|
+                    new_users_account_email_distribution_group_query( ldap, user_uid )
+                  end
+                end
+
                 def create_users_account_email_distribution_group( user_uid, distribution_group )
                   net_ldap do |ldap|
                     begin

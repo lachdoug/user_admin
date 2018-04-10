@@ -60,6 +60,16 @@ class V0
                 #   delete_email_distribution_group_email_address_query( ldap, user_uid, distribution_list_name, email_address )
                 # end
 
+                def new_users_account_email_distribution_group_query( ldap, user_uid )
+                  user_distribution_groups =
+                    show_users_account_email_query( ldap, user_uid )[:distribution_groups].
+                    map { |distribution_group| distribution_group[:name] }
+                  distribution_groups =
+                    index_email_distribution_groups_query( ldap ).
+                    map { |distribution_group| distribution_group[:name] }
+                  { distribution_groups: distribution_groups - user_distribution_groups }
+                end
+
                 def create_users_account_email_distribution_group_query( ldap, user_uid, distribution_group )
                   user_entry = find_user_entry_helper ldap, user_uid
                   mailbox = user_mailbox_helper(ldap, user_entry)
