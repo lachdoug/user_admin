@@ -31,6 +31,10 @@ describe V0::Api::Controllers::Emails::DistributionGroups::EmailAddressesControl
     distribution_group_name: "testdistribution@testdomain.fake",
     email_address: { address: "dude@testdomain.fake" }
     expect( response[:address] ).to eq( "dude@testdomain.fake" )
+
+    get '/email/distribution_groups/', name: "testdistribution@testdomain.fake"
+    expect( response[:email_addresses] ).to include( "testuser@testdomain.fake" )
+    expect( response[:email_addresses] ).to include( "dude@testdomain.fake" )
   end
 
   it 'delete :distribution_group :email_address' do
@@ -38,6 +42,10 @@ describe V0::Api::Controllers::Emails::DistributionGroups::EmailAddressesControl
     distribution_group_name: "testdistribution@testdomain.fake",
     address: "dude@testdomain.fake"
     expect( response ).to eq( {} )
+
+    get '/email/distribution_groups/', name: "testdistribution@testdomain.fake"
+    expect( response[:email_addresses] ).to include( "testuser@testdomain.fake" )
+    expect( response[:email_addresses] ).to_not include( "dude@testdomain.fake" )
   end
 
   it 'Cleans up after tests' do

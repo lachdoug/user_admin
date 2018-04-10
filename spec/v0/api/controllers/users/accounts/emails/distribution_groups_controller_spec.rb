@@ -11,6 +11,11 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
     }
   end
 
+  it 'Shows :email :distribution_group does not yet have :email_address' do
+    get '/email/distribution_groups/', name: "testdistribution@testdomain.fake"
+    expect( response[:email_addresses] ).to_not include( "testuser@testdomain.fake" )
+  end
+
   it 'Creates :users :account :email :distribution_group' do
     post '/users/accounts/email/distribution_groups/', user_uid: 'testuser', distribution_group: { name: 'testdistribution@testdomain.fake' }
     expect( response[:name] ).to eq( 'testdistribution@testdomain.fake' )
@@ -20,13 +25,20 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
     })
   end
 
-  it 'Deletes :email :distribution_group' do
-    delete '/email/distribution_groups/email_addresses/',
-      distribution_group_name: 'testdistribution@testdomain.fake',
-      address: "testuser@testdomain.fake"
-    expect( response ).to eq( {} )
-  end
+  it 'Deletes :distribution_group :email_address' do
+    get '/email/distribution_groups/', name: "testdistribution@testdomain.fake"
+    expect( response[:email_addresses] ).to include( "testuser@testdomain.fake" )
 
+    delete '/email/distribution_groups/email_addresses/',
+    distribution_group_name: "testdistribution@testdomain.fake",
+    address: "testuser@testdomain.fake"
+    expect( response ).to eq( {} )
+
+    get '/users/accounts/', uid: 'testuser'
+    expect( response[:email][:distribution_groups] ).to_not include({
+      group: 'testdistribution@testdomain.fake', email_address: "testuser@testdomain.fake"
+    })
+  end
 
   it 'Cleans up after tests' do
     delete '/email/default_domain'

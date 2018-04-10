@@ -22,7 +22,7 @@ class V0
               # #  :name [String]
               # # @return [Hash] {}
               # delete '/users/accounts/email/distribution_groups/' do
-              #   ldap.delete_users_account_email_distribution_group params[:user_uid], params[:name], params[:email_address]
+              #   ldap.delete_users_account_email_distribution_group params[:user_uid], params[:email_address]
               # end
 
             end
