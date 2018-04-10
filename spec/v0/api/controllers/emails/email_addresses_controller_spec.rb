@@ -13,7 +13,7 @@ describe V0::Api::Controllers::Emails::EmailAddressesController do
 
   it 'index :email_addresses' do
     get '/email/email_addresses'
-    expect( response ).to include( {:source_type=>"list", :distribution_list_name=>"testdistribution@testdomain.fake", :email_address=>"testdistribution@testdomain.fake"} )
+    expect( response ).to include( {:source_type=>"distribution_group", :distribution_group_name=>"testdistribution@testdomain.fake", :email_address=>"testdistribution@testdomain.fake"} )
     expect( response ).to include( {:source_type=>"mailbox", :user_uid=>"testuser", :email_address=>"testuser@testdomain.fake"} )
   end
 

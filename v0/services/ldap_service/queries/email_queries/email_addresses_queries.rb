@@ -49,11 +49,11 @@ class V0
             end
 
             def index_email_distribution_groups_email_addresses_query(ldap)
-              index_email_distribution_groups_query(ldap).map do |distribution_list|
+              index_email_distribution_groups_query(ldap).map do |distribution_group|
                 {
-                  source_type: :list,
-                  distribution_list_name: distribution_list[:name],
-                  email_address: distribution_list[:name]
+                  source_type: :distribution_group,
+                  distribution_group_name: distribution_group[:name],
+                  email_address: distribution_group[:name]
                 }
               end
             end

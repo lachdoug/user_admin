@@ -27,6 +27,13 @@ describe V0::Api::Controllers::Emails::DistributionGroupsController do
   end
 
   it 'update :distribution_group' do
+    get '/email/distribution_groups/edit', name: "testdistribution@testdomain.fake"
+    expect( response[:local_part] ).to eq( "testdistribution" )
+    expect( response[:domain] ).to eq( "testdomain.fake" )
+    expect( response[:description] ).to eq( "fake stuff" )
+    expect( response[:email_domains] ).to be_a( Array )
+    expect( response[:email_domains][0] ).to be_a( String )
+
     put '/email/distribution_groups/',
     name: "testdistribution@testdomain.fake",
     distribution_group: {

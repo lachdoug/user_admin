@@ -34,14 +34,14 @@ class V0
             ldap.show_email_distribution_group params[:name]
           end
 
-          # # Edit distribution_group
-          # #  params
-          # # :name [String] <local_part>@<domain>
-          # #  :distribution_group [Hash] distribution_group data
-          # # @return [Hash] :distribution_group
-          # get '/email/distribution_groups/edit' do
-          #   ldap.edit_distribution_group params[:name]
-          # end
+          # Edit distribution_group
+          #  params
+          # :name [String] <local_part>@<domain>
+          #  :distribution_group [Hash] distribution_group data
+          # @return [Hash] :distribution_group
+          get '/email/distribution_groups/edit' do
+            ldap.edit_distribution_group params[:name]
+          end
 
           # Update distribution_group
           #  params

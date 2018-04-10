@@ -14,12 +14,6 @@ class V0
                 index_email_distribution_groups_query ldap
               end
             end
-            #
-            # def new_distribution_group
-            #   net_ldap do |ldap|
-            #     show_email_query ldap
-            #   end
-            # end
 
             def create_email_distribution_group(distribution_group)
               net_ldap do |ldap|
@@ -49,19 +43,19 @@ class V0
               end
             end
 
-            # def edit_distribution_group( name )
-            #   net_ldap do |ldap|
-            #     dn = "cn=#{name},ou=Distribution Groups,dc=engines,dc=internal"
-            #     entry = find_entry_by_dn_helper(ldap, dn)
-            #     local_part, domain = entry.cn[0].split('@')
-            #     {
-            #       local_part: local_part,
-            #       domain: domain,
-            #       description: entry.respond_to?(:description) ? entry.description[0] : "",
-            #       email_domains: email_domains(ldap)
-            #     }
-            #   end
-            # end
+            def edit_distribution_group( name )
+              net_ldap do |ldap|
+                dn = "cn=#{name},ou=Distribution Groups,dc=engines,dc=internal"
+                entry = find_entry_by_dn_helper(ldap, dn)
+                local_part, domain = entry.cn[0].split('@')
+                {
+                  local_part: local_part,
+                  domain: domain,
+                  description: entry.respond_to?(:description) ? entry.description[0] : "",
+                  email_domains: index_email_domains_query( ldap )
+                }
+              end
+            end
 
 
             def delete_email_distribution_group(name)
