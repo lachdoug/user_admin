@@ -8,11 +8,7 @@ class V0
           # Index :users :accounts
           # @return [Array] index of :users :accounts
           get '/users/accounts' do
-            # ldap.index_users_accounts
-            {
-              :username => ENV["access_dn"],
-              :password => ENV["ldap_password"]
-              }
+            ldap.index_users_accounts            
           end
 
           # Create :users :account

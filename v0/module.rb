@@ -34,7 +34,7 @@ class V0 < Sinatra::Base
   set public_folder: 'public'
   # set ldap_admin_keytab_path: ENV['ENGINES_ADMIN_GUI_KERBEROS_LDAP_KEYTAB_PATH'] || "/etc/krb5kdc/keys/control.keytab"
   set show_exceptions: false
-  set ldap_username: ENV["access_dn"]
+  set ldap_username: ENV["ldap_dn"]
   set ldap_password: ENV["ldap_password"]
 
   # Services
