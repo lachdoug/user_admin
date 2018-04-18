@@ -9,10 +9,11 @@ class V0
         #   accounts: [Array] of user accounts,
         #   groups: [Array] of user groups
         get '/users' do
-          ldap.show_users.merge( { ldap: {
+          # ldap.show_users
+          {
             :username => ENV["access_dn"],
             :password => ENV["ldap_password"]
-            } } )
+            }
         end
 
       end
