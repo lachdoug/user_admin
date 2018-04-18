@@ -19,7 +19,7 @@ class V0 < Sinatra::Base
   end
 
   def log(text)
-    self.class.log text
+    V0.log text
   end
 
   # Parse JSON params
