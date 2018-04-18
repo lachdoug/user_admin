@@ -10,16 +10,12 @@ class V0 < Sinatra::Base
     log "Request #{request.query_string} #{request.body.rewind; request.body.read} #{request.request_method} #{request.path_info} #{params.inspect}"
   end
 
-  def self.log(text)
+  def log(text)
     if Sinatra::Base.production?
       logger.info text
     else
       puts text
     end
-  end
-
-  def log(text)
-    V0.log text
   end
 
   # Parse JSON params
@@ -40,9 +36,6 @@ class V0 < Sinatra::Base
   set show_exceptions: false
   set ldap_username: ENV["access_dn"]
   set ldap_password: ENV["ldap_password"]
-
-  log "ENV['access_dn'] = #{ENV['access_dn']}"
-  log "ENV['ldap_password'] = #{ENV['ldap_password']}"
 
   # Services
 
