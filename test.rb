@@ -1,5 +1,5 @@
 ENV['RACK_ENV'] = 'test'
-ENV["access_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
 ENV["ldap_password"] = "e4d29c5c"
 
 require_relative 'v0/module'
