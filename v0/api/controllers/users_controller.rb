@@ -9,11 +9,7 @@ class V0
         #   accounts: [Array] of user accounts,
         #   groups: [Array] of user groups
         get '/users' do
-          # ldap.show_users
-          {
-            :username => ENV["access_dn"],
-            :password => ENV["ldap_password"]
-            }
+          ldap.show_users          
         end
 
       end
