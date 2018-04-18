@@ -5,11 +5,6 @@ require 'byebug' if Sinatra::Base.development?
 
 class V0 < Sinatra::Base
 
-  # require 'rack'
-  # require 'rack/contrib'
-  # Automatically parse JSON params
-  # use Rack::PostBodyContentTypeParser
-
   # Output request details for debugging in development
   before do
     log "Request #{request.query_string} #{request.body.rewind; request.body.read} #{request.request_method} #{request.path_info} #{params.inspect}"
@@ -39,6 +34,8 @@ class V0 < Sinatra::Base
   set public_folder: 'public'
   # set ldap_admin_keytab_path: ENV['ENGINES_ADMIN_GUI_KERBEROS_LDAP_KEYTAB_PATH'] || "/etc/krb5kdc/keys/control.keytab"
   set show_exceptions: false
+  set ldap_username: ENV["access_dn"]
+  set ldap_password: ENV["ldap_password"]
 
   # Services
 
@@ -51,7 +48,7 @@ class V0 < Sinatra::Base
   # LDAP service interface
 
   def ldap
-    @ldap ||= LdapService.new
+    @ldap ||= LdapService.new settings
   end
 
   # Register controllers

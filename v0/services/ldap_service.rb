@@ -24,30 +24,32 @@ class V0
       include Resources
       # include Reset
 
-      # def initialize(settings)
-      #   @settings = settings
-      # end
+      def initialize(settings)
+        @settings = settings
+      end
 
       def net_ldap
         auth = {
           :method => :simple,
-          :username => "cn=admin,dc=engines,dc=internal",
-          :password => "password"
+          :username => @settings.ldap_username,
+          :password => @settings.ldap_password
         }
 
+        # auth = {
+        #   :method => :simple,
+        #   :username => "cn=admin,dc=engines,dc=internal",
+        #   :password => "password"
+        # }
+
         begin
-          Net::LDAP.open(host: "ldap", auth: auth) do |conn|
-            yield conn
+          Net::LDAP.open(host: "ldap", auth: auth) do |connection|
+            yield connection
           end
         rescue Net::LDAP::ConnectionRefusedError => e
           raise Error.new "Failed to connect to LDAP service."
         end
 
       end
-      #
-      # def debug(output)
-      #   puts output.to_s if Sinatra::Base.development?
-      # end
 
 
       class Error < StandardError
