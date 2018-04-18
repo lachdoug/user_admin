@@ -37,6 +37,9 @@ class V0 < Sinatra::Base
   set ldap_username: ENV["access_dn"]
   set ldap_password: ENV["ldap_password"]
 
+  log "ENV["access_dn"] = #{ENV["access_dn"]}"
+  log "ENV["ldap_password"] = #{ENV["ldap_password"]}"
+
   # Services
 
   module Services; end
