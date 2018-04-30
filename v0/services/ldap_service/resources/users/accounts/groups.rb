@@ -30,7 +30,7 @@ class V0
                       }
                     end
                   rescue Error => e
-                    ldap_op_error( ldap, "Failed to create account group" )
+                    ldap_op_error( ldap, "Failed to create account group." )
                   end
                 end
               end
@@ -43,7 +43,7 @@ class V0
                     end
                     return {}
                   rescue Error => e
-                    ldap_op_error( ldap, "Failed to delete account group" )
+                    ldap_op_error( ldap, "Failed to delete account group." )
                   end
                 end
               end
