@@ -7,7 +7,7 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
   end
 
   it 'deletes, creates, deletes :users :account :groups' do
-    delete '/users/accounts/groups', user_uid: 'testuser', dns: [
+    delete '/users/accounts/groups', user_uid: 'testuser', group_dns: [
       "cn=Users,ou=Groups,dc=engines,dc=internal" ]
     expect( response ).to eq( {} )
 
@@ -22,7 +22,7 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
       name: "data_access", dn: "cn=data_access,ou=Groups,dc=engines,dc=internal" } )
 
     post '/users/accounts/groups', user_uid: 'testuser',
-      dns: [
+      group_dns: [
         "cn=Users,ou=Groups,dc=engines,dc=internal",
         "cn=data_access,ou=Groups,dc=engines,dc=internal"
       ]
@@ -33,7 +33,7 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
     expect( response[:groups] ).to include( { name: "Users", dn: "cn=Users,ou=Groups,dc=engines,dc=internal" } )
     expect( response[:groups] ).to include( { name: "data_access", dn: "cn=data_access,ou=Groups,dc=engines,dc=internal" } )
 
-    delete '/users/accounts/groups', user_uid: 'testuser', dns: [
+    delete '/users/accounts/groups', user_uid: 'testuser', group_dns: [
       "cn=Users,ou=Groups,dc=engines,dc=internal",
       "cn=data_access,ou=Groups,dc=engines,dc=internal" ]
     expect( response ).to eq( {} )

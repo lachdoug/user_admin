@@ -15,7 +15,7 @@ describe V0::Api::Controllers::DnLookupsController do
     post '/dn_lookup', user_auth: { uid: "testuser", password: "111" }
      }.to raise_error V0::Services::LdapService::Error
 
-    delete '/users/accounts/groups', user_uid: 'testuser', dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
+    delete '/users/accounts/groups', user_uid: 'testuser', group_dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
     delete '/users/accounts/', uid: 'testuser'
   end
 

@@ -2,9 +2,9 @@ describe V0::Api::Controllers do
 
   it 'Remove artifacts that may remain from previous failed tests.' do
 
-      delete! '/users/accounts/groups', user_uid: 'testuser', dns: [
+      delete! '/users/accounts/groups', user_uid: 'testuser', group_dns: [
         "cn=Users,ou=Groups,dc=engines,dc=internal" ]
-      delete! '/users/accounts/groups', user_uid: 'testuser', dns: [
+      delete! '/users/accounts/groups', user_uid: 'testuser', group_dns: [
         "cn=data_access,ou=Groups,dc=engines,dc=internal" ]
       delete! '/users/accounts/email', user_uid: 'testuser'
       delete! '/users/accounts/', uid: 'testuser'

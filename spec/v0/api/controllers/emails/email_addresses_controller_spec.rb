@@ -33,7 +33,7 @@ describe V0::Api::Controllers::Emails::EmailAddressesController do
 
   it 'cleanup after tests' do
     delete '/email/distribution_groups/', name: "testdistribution@testdomain.fake"
-    delete '/users/accounts/groups', user_uid: 'testuser', dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
+    delete '/users/accounts/groups', user_uid: 'testuser', group_dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
     delete '/users/accounts/email', user_uid: 'testuser'
     delete '/users/accounts/', uid: 'testuser'
     delete '/email/domains/', name: 'testdomain.fake'

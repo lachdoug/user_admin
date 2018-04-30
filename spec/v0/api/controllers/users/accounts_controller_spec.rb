@@ -52,7 +52,7 @@ describe V0::Api::Controllers::Users::AccountsController do
   end
 
   it 'delete :users :account' do
-    delete '/users/accounts/groups', user_uid: 'testuser', dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
+    delete '/users/accounts/groups', user_uid: 'testuser', group_dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
     delete '/users/accounts/', uid: 'testuser'
     expect( response ).to eq( {} )
   end

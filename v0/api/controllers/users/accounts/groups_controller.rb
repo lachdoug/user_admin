@@ -20,7 +20,7 @@ class V0
             #  :group [Hash] { name: [String] }
             # @return [Hash] :users :account :group
             post '/users/accounts/groups' do
-              ldap.create_users_account_groups params[:user_uid], params[:dns]
+              ldap.create_users_account_groups params[:user_uid], params[:group_dns]
             end
 
             # Delete :users :account :groups
@@ -29,7 +29,7 @@ class V0
             #  :names [Array] group names
             # @return [Hash] {}
             delete '/users/accounts/groups' do
-              ldap.delete_users_account_groups params[:user_uid], params[:dns]
+              ldap.delete_users_account_groups params[:user_uid], params[:group_dns]
             end
 
           end
