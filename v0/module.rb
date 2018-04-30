@@ -32,10 +32,9 @@ class V0 < Sinatra::Base
   set logging: true
   set dump_errors: Sinatra::Base.development?
   set public_folder: 'public'
-  # set ldap_admin_keytab_path: ENV['ENGINES_ADMIN_GUI_KERBEROS_LDAP_KEYTAB_PATH'] || "/etc/krb5kdc/keys/control.keytab"
   set show_exceptions: false
-  set ldap_username: ENV["ldap_dn"]
-  set ldap_password: ENV["ldap_password"]
+  set ldap_admin_username: ENV["ldap_dn"]
+  set ldap_admin_password: ENV["ldap_password"]
 
   # Services
 
@@ -43,12 +42,24 @@ class V0 < Sinatra::Base
   Dir.glob( [ "./v0/services/*.rb" ] ).each { |file| require file }
   include Services
 
-  # API
+  # LDAP service
 
-  # LDAP service interface
+  before do
+    if params[:token_owner] == "sysadmin"
+      @ldap_username = settings.ldap_admin_username
+      @ldap_password = settings.ldap_admin_password
+    elsif params[:token_owner] &&
+          params[:user_auth]
+      @ldap_username = params[:token_owner]
+      @ldap_password = ( params[:user_auth] || {} )[:password]
+    end
+  end
 
   def ldap
-    @ldap ||= LdapService.new settings
+    LdapService.new(
+      username: @ldap_username,
+      password: @ldap_password
+    )
   end
 
   # Register controllers
@@ -62,12 +73,9 @@ class V0 < Sinatra::Base
 
   # Send JSON
 
-  # before do
-  # end
-
   after do
     content_type :json
-    response.body = response.body.to_json # JSON.dump(response.body)
+    response.body = response.body.to_json
     log response.body
   end
 
@@ -78,7 +86,6 @@ class V0 < Sinatra::Base
   end
 
   error do |error|
-    # log "ERROR: #{error.inspect}"
     return [ 405, { error: { message: error.message } } ] if error.is_a? LdapService::Error
     [ 500, { error: { message: error.message, backtrace: error.backtrace } } ]
   end

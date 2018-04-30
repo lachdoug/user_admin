@@ -16,6 +16,12 @@ class V0
             end
           end
 
+          def show_user_account_dn( user_auth )
+            net_ldap do |ldap|
+              show_user_account_dn_query ldap, user_auth
+            end
+          end
+
         end
       end
     end

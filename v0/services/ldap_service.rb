@@ -15,40 +15,33 @@ class V0
       end
 
       require_relative 'ldap_service/helpers'
-      # require_relative 'ldap_service/reset'
       require_relative 'ldap_service/resources'
       require_relative 'ldap_service/queries'
 
       include Helpers
       include Queries
       include Resources
-      # include Reset
 
-      def initialize(settings)
-        @settings = settings
+      def initialize(auth)
+        puts auth
+        @auth = auth
       end
 
       def net_ldap
-        auth = {
-          :method => :simple,
-          :username => @settings.ldap_username,
-          :password => @settings.ldap_password
-        }
-
-        # auth = {
-        #   :method => :simple,
-        #   :username => "cn=admin,dc=engines,dc=internal",
-        #   :password => "password"
-        # }
-
         begin
-          Net::LDAP.open(host: "ldap", auth: auth) do |connection|
-            yield connection
+          Net::LDAP.open(
+              host: "ldap",
+              auth: @auth.merge( { method: :simple } )
+            ) do |connection|
+            if connection.bind
+              yield connection
+            else
+              raise Error.new "Failed to bind to LDAP service."
+            end
           end
         rescue Net::LDAP::ConnectionRefusedError => e
           raise Error.new "Failed to connect to LDAP service."
         end
-
       end
 
 

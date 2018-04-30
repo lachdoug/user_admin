@@ -17,6 +17,11 @@ class V0
             }
           end
 
+          def show_user_account_dn_query( ldap, uid )
+            # , user_auth[:password]
+            { dn: find_user_entry_helper( ldap, uid ).dn }
+          end
+
         end
       end
     end

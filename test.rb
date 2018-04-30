@@ -17,39 +17,43 @@ def app
   V0
 end
 
-def ldap
-  @ldap ||= V0::Services::LdapService.new
+# def ldap
+#   @ldap ||= V0::Services::LdapService.new
+# end
+
+def response_body
+  @response_body ||= JSON.parse( last_response.body, symbolize_names: true )
 end
 
-def response
-  @response ||= JSON.parse( last_response.body, symbolize_names: true )
+def clear_response_body
+  @response_body = nil
 end
 
-def clear_response
-  @response = nil
-end
-
-def get *args
-  clear_response
+def get route, params={}
+  params.merge!( { token_owner: "sysadmin" } ) unless route == '/dn_lookup'
+  clear_response_body
   super
 end
 
-def post *args
-  args[1] = args[1].to_json
-  args << { 'CONTENT_TYPE' => "application/json" }
-  clear_response
-  super
+def post route, params={}
+  params.merge!( { token_owner: "sysadmin" } )
+  params = params.to_json
+  clear_response_body
+  super route, params, { 'CONTENT_TYPE' => "application/json" }
 end
 
-def put *args
-  args[1] = args[1].to_json
-  args << { 'CONTENT_TYPE' => "application/json" }
-  clear_response
-  super
+def put route, params={}
+  params.merge!( { token_owner: "sysadmin" } )
+  params = params.to_json
+  clear_response_body
+  super route, params, { 'CONTENT_TYPE' => "application/json" }
 end
 
-def delete *args
-  clear_response
+def delete route, params={}
+  params.merge!( { token_owner: "sysadmin" } )
+  # params = params.to_json
+  clear_response_body
+  # super route, params, { 'CONTENT_TYPE' => "application/json" }
   super
 end
 
