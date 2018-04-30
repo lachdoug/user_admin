@@ -38,7 +38,9 @@ class V0
 
               if ldap.add dn: dn, attributes: attributes
                 entry = find_user_entry_helper ldap, uid
-                create_users_account_group_query( ldap, uid, "Users" )
+                create_users_account_group_query(
+                  ldap, uid,
+                  "cn=Users,ou=Groups,dc=engines,dc=internal" )
               end
 
             end

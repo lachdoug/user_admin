@@ -8,6 +8,7 @@ class V0
 
               def new_users_account_groups( user_uid )
                 net_ldap do |ldap|
+                  # byebug
                   existing_groups = index_users_account_groups_query(ldap, user_uid)
                   all_groups = index_users_groups_query( ldap )
                   available_groups = all_groups - existing_groups
@@ -15,24 +16,30 @@ class V0
                 end
               end
 
-              def create_users_account_groups( user_uid, groups )
+              def create_users_account_groups( user_uid, group_dns )
                 net_ldap do |ldap|
                   begin
-                    groups.each do |group|
-                      raise Error unless create_users_account_group_query( ldap, user_uid, group[:name] )
+                    group_dns.each do |group_dn|
+                      raise Error unless create_users_account_group_query( ldap, user_uid, group_dn )
                     end
-                    return groups
+                    group_dns.map do |group_dn|
+                      entry = find_entry_by_dn_helper ldap, group_dn
+                      {
+                        name: entry.cn[0],
+                        dn: entry.dn
+                      }
+                    end
                   rescue Error => e
                     ldap_op_error( ldap, "Failed to create account group" )
                   end
                 end
               end
 
-              def delete_users_account_groups( user_uid, group_names )
+              def delete_users_account_groups( user_uid, group_dns )
                 net_ldap do |ldap|
                   begin
-                    group_names.each do |group_name|
-                      raise Error unless delete_users_account_group_query( ldap, user_uid, group_name )
+                    group_dns.each do |group_dn|
+                      raise Error unless delete_users_account_group_query( ldap, user_uid, group_dn )
                     end
                     return {}
                   rescue Error => e

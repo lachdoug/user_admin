@@ -6,16 +6,16 @@ class V0
           module AccountsQueries
             module GroupsQueries
 
-              def create_users_account_group_query( ldap, user_uid, group_name )
+              def create_users_account_group_query( ldap, user_uid, dn )
                 ldap.modify(
-                  dn: "cn=#{group_name},ou=Groups,dc=engines,dc=internal",
+                  dn: dn,
                   operations: [ [:add, :memberUid, user_uid ] ]
                 )
               end
 
-              def delete_users_account_group_query( ldap, user_uid, group_name )
+              def delete_users_account_group_query( ldap, user_uid, dn )
                 ldap.modify(
-                  dn: "cn=#{group_name},ou=Groups,dc=engines,dc=internal",
+                  dn: dn,
                   operations: [ [:delete, :memberUid, user_uid ] ]
                 )
               end
@@ -25,7 +25,7 @@ class V0
                 ldap.search(
                   filter: Net::LDAP::Filter.eq( "memberUid", user_uid ),
                   base: "ou=Groups,dc=engines,dc=internal" ) do |entry|
-                  result << entry.cn[0]
+                  result << { name: entry.cn[0], dn: entry.dn }
                 end
                 result
               end

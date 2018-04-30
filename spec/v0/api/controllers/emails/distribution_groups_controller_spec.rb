@@ -47,6 +47,7 @@ describe V0::Api::Controllers::Emails::DistributionGroupsController do
 
   it 'show :distribution_group after update' do
     get '/email/distribution_groups/', name: "testdistribution1@testdomain.fake"
+    # byebug
     expect( response[:name] ).to eq( "testdistribution1@testdomain.fake" )
     expect( response[:description] ).to eq( "fake stuff1" )
   end

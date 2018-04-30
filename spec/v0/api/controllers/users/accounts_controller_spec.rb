@@ -8,7 +8,11 @@ describe V0::Api::Controllers::Users::AccountsController do
   end
 
   it 'create :users :account' do
-    post '/users/accounts/', account: { uid: 'testuser', first_name: 'Test', last_name: 'User', password: '123' }
+    post '/users/accounts/', account: {
+      uid: 'testuser',
+      first_name: 'Test',
+      last_name: 'User',
+      password: '123' }
     expect( response[:uid] ).to eq( 'testuser' )
     expect( response[:name] ).to eq( 'Test User' )
     expect( response[:first_name] ).to eq( 'Test' )
@@ -34,7 +38,8 @@ describe V0::Api::Controllers::Users::AccountsController do
     expect( response[:name] ).to eq( 'Test User' )
     expect( response[:first_name] ).to eq( 'Test' )
     expect( response[:last_name] ).to eq( 'User' )
-    expect( response[:groups] ).to eq( ['Users'] )
+    expect( response[:groups] ).to eq( [ { name: 'Users',
+      dn: "cn=Users,ou=Groups,dc=engines,dc=internal" } ] )
     expect( response[:email] ).to eq( {} )
   end
 
@@ -47,7 +52,7 @@ describe V0::Api::Controllers::Users::AccountsController do
   end
 
   it 'delete :users :account' do
-    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
+    delete '/users/accounts/groups', user_uid: 'testuser', dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
     delete '/users/accounts/', uid: 'testuser'
     expect( response ).to eq( {} )
   end

@@ -16,7 +16,7 @@ class V0
           #  :name [String] name of the :users :group
           # @return [Hash] :users :group
           get '/users/groups/' do
-            ldap.show_users_group params[:name]
+            ldap.show_users_group params[:dn]
           end
 
 

@@ -8,7 +8,7 @@ class V0
           # Index :users :accounts
           # @return [Array] index of :users :accounts
           get '/users/accounts' do
-            ldap.index_users_accounts            
+            ldap.index_users_accounts
           end
 
           # Create :users :account
@@ -16,7 +16,6 @@ class V0
           #  :account [Hash] new :users :account data
           # @return [Hash] :users :account
           post '/users/accounts/' do
-            logger.info "Request #{request.request_method} #{request.path_info} #{params.inspect}"
             ldap.create_users_account params[:account]
             ldap.show_users_account params[:account][:uid]
           end

@@ -47,7 +47,7 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
     delete '/email/default_domain'
     delete '/email/domains/', name: 'testdomain.fake'
     delete '/users/accounts/email', user_uid: 'testuser'
-    delete '/users/accounts/groups', user_uid: 'testuser', names: ['Users']
+    delete '/users/accounts/groups', user_uid: 'testuser', dns: ["cn=Users,ou=Groups,dc=engines,dc=internal"]
     delete '/users/accounts/', uid: 'testuser'
   end
 

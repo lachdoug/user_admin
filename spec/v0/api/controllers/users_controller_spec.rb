@@ -11,7 +11,9 @@ describe V0::Api::Controllers::UsersController do
     expect( @user[:name] ).to be_a( String )
     expect( @user[:uid] ).to be_a( String )
 
-    expect( response[:groups].first ).to be_a( String )
+    expect( response[:groups].first ).to be_a( Hash )
+    expect( response[:groups].first[:name] ).to be_a( String )
+    expect( response[:groups].first[:dn] ).to be_a( String )
 
   end
 

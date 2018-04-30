@@ -10,21 +10,20 @@ class V0
               ldap.search(
                 filter: Net::LDAP::Filter.eq( "objectClass", "posixGroup" ),
                 base: "ou=Groups,dc=engines,dc=internal" ) do |entry|
-                result << entry.cn[0]
+                result << { name: entry.cn[0], dn: entry.dn }
               end
               result
-
             end
 
-            def show_users_group_query( ldap, name )
-              dn = "cn=#{name},ou=Groups,dc=engines,dc=internal"
+            # def show_users_group_query( ldap, name )
+            def show_users_group_query( ldap, dn )
+              # byebug
+              # dn = "cn=#{name},ou=Groups,dc=engines,dc=internal"
               entry = find_entry_by_dn_helper ldap, dn
-              {
-                name: name,
-                members: entry.respond_to?(:memberuid) ? entry.memberuid : []
-              }
+              { name: entry.cn[0],
+                dn: dn,
+                members: entry.respond_to?(:memberuid) ? entry.memberuid : [] }
             end
-
 
           end
         end

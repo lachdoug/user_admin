@@ -15,7 +15,6 @@ class V0
             include Password
             include Signins
 
-
             def index_users_accounts
               net_ldap do |ldap|
                 index_users_accounts_query ldap
