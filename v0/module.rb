@@ -29,6 +29,11 @@ class V0 < Sinatra::Base
 
   # Settings
 
+  if Sinatra::Base.development?
+    ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+    ENV["ldap_password"] = "e4d29c5c"
+  end
+
   set logging: true
   set dump_errors: Sinatra::Base.development?
   set public_folder: 'public'

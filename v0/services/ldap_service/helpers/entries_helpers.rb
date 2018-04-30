@@ -13,21 +13,17 @@ class V0
           end
 
           def add_class_to_entry_helper( ldap, entry, klass )
-            # unless entry.objectClass.include? klass
-              ldap.modify(
-                dn: entry.dn,
-                operations: [ [:add, :objectClass, klass ] ]
-              )
-            # end
+            ldap.modify(
+              dn: entry.dn,
+              operations: [ [:add, :objectClass, klass ] ]
+            )
           end
 
           def remove_class_from_entry_helper( ldap, entry, klass )
-            # if entry.objectClass.include? klass
               ldap.modify(
                 dn: entry.dn,
                 operations: [ [:delete, :objectClass, klass ] ]
               )
-            # end
           end
 
           def update_entry_rdn_helper( ldap, entry, newrdn )

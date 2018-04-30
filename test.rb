@@ -21,38 +21,38 @@ end
 #   @ldap ||= V0::Services::LdapService.new
 # end
 
-def response_body
-  @response_body ||= JSON.parse( last_response.body, symbolize_names: true )
+def response
+  @response ||= JSON.parse( last_response.body, symbolize_names: true )
 end
 
-def clear_response_body
-  @response_body = nil
+def clear_response
+  @response = nil
 end
 
 def get route, params={}
   params.merge!( { token_owner: "sysadmin" } ) unless route == '/dn_lookup'
-  clear_response_body
+  clear_response
   super
 end
 
 def post route, params={}
   params.merge!( { token_owner: "sysadmin" } )
   params = params.to_json
-  clear_response_body
+  clear_response
   super route, params, { 'CONTENT_TYPE' => "application/json" }
 end
 
 def put route, params={}
   params.merge!( { token_owner: "sysadmin" } )
   params = params.to_json
-  clear_response_body
+  clear_response
   super route, params, { 'CONTENT_TYPE' => "application/json" }
 end
 
 def delete route, params={}
   params.merge!( { token_owner: "sysadmin" } )
   # params = params.to_json
-  clear_response_body
+  clear_response
   # super route, params, { 'CONTENT_TYPE' => "application/json" }
   super
 end
