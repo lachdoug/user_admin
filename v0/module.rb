@@ -7,7 +7,7 @@ class V0 < Sinatra::Base
 
   # Output request details for debugging in development
   before do
-    log "Request:\n #{request.query_string}\n #{request.body.rewind; request.body.read}\n #{request.request_method}\n #{request.path_info}\n #{params.inspect}"
+    log "\nRequest:\n #{request.query_string}\n #{request.body.rewind; request.body.read}\n #{request.request_method}\n #{request.path_info}\n #{params.inspect}"
   end
 
   def log(text)
