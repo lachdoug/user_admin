@@ -15,10 +15,7 @@ class V0
               result
             end
 
-            # def show_users_group_query( ldap, name )
             def show_users_group_query( ldap, dn )
-              # byebug
-              # dn = "cn=#{name},ou=Groups,dc=engines,dc=internal"
               entry = find_entry_by_dn_helper ldap, dn
               { name: entry.cn[0],
                 dn: dn,

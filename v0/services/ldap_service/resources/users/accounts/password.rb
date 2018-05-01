@@ -9,7 +9,6 @@ class V0
               def update_users_account_password( user_uid, password )
                 net_ldap do |ldap|
                   begin
-                    # byebug
                     raise Error unless update_users_account_password_query( ldap, user_uid, password )
                     return {}
                   rescue Error => e

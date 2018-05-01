@@ -8,7 +8,6 @@ class V0
 
               def new_users_account_groups( user_uid )
                 net_ldap do |ldap|
-                  # byebug
                   existing_groups = index_users_account_groups_query(ldap, user_uid)
                   all_groups = index_users_groups_query( ldap )
                   available_groups = all_groups - existing_groups
