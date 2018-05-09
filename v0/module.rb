@@ -52,9 +52,6 @@ class V0 < Sinatra::Base
     else
       @ldap_username = params[:token_owner]
       @ldap_password = ( params[:user_auth] || {} )[:password]
-    # else
-    #   @ldap_username = ( params[:user_auth] || {} )[:username]
-    #   @ldap_password = ( params[:user_auth] || {} )[:password]
     end
   end
 
