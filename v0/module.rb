@@ -35,7 +35,7 @@ class V0 < Sinatra::Base
   end
 
   set logging: true
-  set dump_errors: Sinatra::Base.development?
+  set dump_errors: true # Sinatra::Base.development?
   set public_folder: 'public'
   set show_exceptions: false
   set ldap_admin_username: ENV["ldap_dn"]
