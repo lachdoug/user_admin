@@ -11,11 +11,12 @@ class V0 < Sinatra::Base
   end
 
   def log(text)
-    if Sinatra::Base.production?
-      logger.info text
-    else
-      puts text
-    end
+    # if Sinatra::Base.production?
+    #   logger.info text
+    # else
+    #   puts text
+    # end
+    STDERR.puts text
   end
 
   # Parse JSON params
