@@ -46,8 +46,7 @@ class V0 < Sinatra::Base
   # LDAP service
 
   before do
-    if params[:token_owner] == "sysadmin" ||
-       request.path_info = '/dn_lookup'
+    if params[:token_owner] == "sysadmin"
       @ldap_username = settings.ldap_admin_username
       @ldap_password = settings.ldap_admin_password
     else
@@ -86,7 +85,7 @@ class V0 < Sinatra::Base
   # Handle errors
 
   not_found do
-    raise "Not a valid route"
+    return 404, "Not a valid v0 route"
   end
 
   error do |error|
