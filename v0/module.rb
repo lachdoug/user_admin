@@ -11,12 +11,7 @@ class V0 < Sinatra::Base
   end
 
   def log(text)
-    # if Sinatra::Base.production?
-    #   logger.info text
-    # else
-    #   puts text
-    # end
-    STDERR.puts text
+    STDOUT.puts text
   end
 
   # Parse JSON params
@@ -51,13 +46,16 @@ class V0 < Sinatra::Base
   # LDAP service
 
   before do
-    if params[:token_owner] == "sysadmin"
+    if params[:token_owner] == "sysadmin" ||
+       request.path_info = '/dn_lookup'
       @ldap_username = settings.ldap_admin_username
       @ldap_password = settings.ldap_admin_password
-    elsif params[:token_owner] &&
-          params[:user_auth]
+    else
       @ldap_username = params[:token_owner]
       @ldap_password = ( params[:user_auth] || {} )[:password]
+    # else
+    #   @ldap_username = ( params[:user_auth] || {} )[:username]
+    #   @ldap_password = ( params[:user_auth] || {} )[:password]
     end
   end
 
