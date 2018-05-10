@@ -50,9 +50,8 @@ class V0 < Sinatra::Base
       @ldap_username = settings.ldap_admin_username
       @ldap_password = settings.ldap_admin_password
     else
-      log "Params: #{params.inspect}"
       @ldap_username = params[:token_owner]
-      @ldap_password = ( params[:user_auth] || {} )[:password]
+      @ldap_password = params[:ldap_password]
     end
   end
 
