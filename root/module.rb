@@ -5,9 +5,12 @@ require 'byebug' if Sinatra::Base.development?
 
 class Root < Sinatra::Base
 
+  set logging: true
+  set dump_errors: true
+  
   # Output request details for debugging in development
   before do
-    log "\nRequest:\n #{request.query_string}\n #{request.body.rewind; request.body.read}\n #{request.request_method}\n #{request.path_info}\n #{params.inspect}"
+    log "\nRequest:\n #{request.request_method}\n #{request.path_info}\n"
   end
 
   def log(text)

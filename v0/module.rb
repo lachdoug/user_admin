@@ -11,7 +11,7 @@ class V0 < Sinatra::Base
   end
 
   def log(text)
-    STDOUT.puts text
+    $stderr.puts text
   end
 
   # Parse JSON params
@@ -50,6 +50,7 @@ class V0 < Sinatra::Base
       @ldap_username = settings.ldap_admin_username
       @ldap_password = settings.ldap_admin_password
     else
+      log "Params: #{params.inspect}"
       @ldap_username = params[:token_owner]
       @ldap_password = ( params[:user_auth] || {} )[:password]
     end
