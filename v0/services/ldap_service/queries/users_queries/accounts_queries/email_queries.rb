@@ -32,7 +32,7 @@ class V0
 
               def create_users_account_email_query( ldap, user_uid, email )
                 entry = find_user_entry_helper ldap, user_uid
-                email_address = "#{user_uid}@#{email[:domain_name]}"
+                email_address = "#{user_uid.downcase}@#{email[:domain_name]}"
                 add_class_to_entry_helper ldap, entry, "postfixUser"
                 add_attribute_value_to_entry_helper ldap, entry, "maildrop", email_address
               end
@@ -50,7 +50,7 @@ class V0
 
               def update_users_account_email_query ( ldap, user_uid, email )
                 entry = find_user_entry_helper ldap, user_uid
-                email_address = "#{user_uid}@#{email[:domain_name]}"
+                email_address = "#{user_uid.downcase}@#{email[:domain_name]}"
                 replace_attribute_value_on_entry_helper ldap, entry, "maildrop", email_address
               end
 
