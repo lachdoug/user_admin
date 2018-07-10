@@ -36,7 +36,7 @@ class V0
             if connection.bind
               yield connection
             else
-              raise Error.new "Failed to bind to LDAP service."
+              raise AuthenticationError.new "Failed to bind to LDAP service."
             end
           end
         rescue Net::LDAP::ConnectionRefusedError => e
@@ -46,6 +46,9 @@ class V0
 
 
       class Error < StandardError
+      end
+
+      class AuthenticationError < Error
       end
 
       class Error::Operation < Error

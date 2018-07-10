@@ -47,7 +47,6 @@ class V0 < Sinatra::Base
 
   before do
     if params[:token_owner] == "sysadmin"
-      # byebug
       @ldap_username = settings.ldap_admin_username
       @ldap_password = settings.ldap_admin_password
     else
@@ -87,6 +86,7 @@ class V0 < Sinatra::Base
   end
 
   error do |error|
+    return [ 401, { error: { message: error.message } } ] if error.is_a? LdapService::AuthenticationError
     return [ 405, { error: { message: error.message } } ] if error.is_a? LdapService::Error
     [ 500, { error: { message: error.message, backtrace: error.backtrace } } ]
   end
