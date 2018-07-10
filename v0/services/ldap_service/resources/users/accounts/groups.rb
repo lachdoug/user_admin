@@ -19,7 +19,14 @@ class V0
                 net_ldap do |ldap|
                   begin
                     group_dns.each do |group_dn|
-                      raise Error unless create_users_account_group_query( ldap, user_uid, group_dn )
+                      # byebug
+                      entry = find_entry_by_dn_helper(ldap, group_dn)
+                      if entry.objectClass.include? "posixGroup"
+                        raise Error unless create_users_account_posix_group_query( ldap, user_uid, group_dn )
+                      else
+                        user_dn = find_user_entry_helper(ldap, user_uid).dn
+                        raise Error unless create_users_account_groupofnames_group_query( ldap, user_dn, group_dn )
+                      end
                     end
                     group_dns.map do |group_dn|
                       entry = find_entry_by_dn_helper ldap, group_dn
@@ -38,7 +45,13 @@ class V0
                 net_ldap do |ldap|
                   begin
                     group_dns.each do |group_dn|
-                      raise Error unless delete_users_account_group_query( ldap, user_uid, group_dn )
+                      entry = find_entry_by_dn_helper(ldap, group_dn)
+                      if entry.objectClass.include? "posixGroup"
+                        raise Error unless delete_users_account_posix_group_query( ldap, user_uid, group_dn )
+                      else
+                        user_dn = find_user_entry_helper(ldap, user_uid).dn
+                        raise Error unless delete_users_account_groupofnames_group_query( ldap, user_dn, group_dn )
+                      end
                     end
                     return {}
                   rescue Error => e

@@ -47,6 +47,33 @@ describe V0::Api::Controllers::Users::Accounts::GroupsController do
       dn: "cn=data_access,ou=Groups,dc=engines,dc=internal" } )
   end
 
+  it 'creates, deletes :users :account :administrator_group' do
+    get '/users/accounts/', uid: 'testuser'
+    expect( response[:groups] ).to_not include( {
+      name: "administrators", dn: "cn=administrators,ou=Groups,dc=engines,dc=internal" } )
+
+    get '/users/accounts/groups/new', user_uid: 'testuser'
+    expect( response[:groups] ).to include( {
+      name: "administrators", dn: "cn=administrators,ou=Groups,dc=engines,dc=internal" } )
+
+    post '/users/accounts/groups', user_uid: 'testuser',
+      group_dns: [
+        "cn=administrators,ou=Groups,dc=engines,dc=internal",
+      ]
+    expect( response ).to include( { name: "administrators", dn: "cn=administrators,ou=Groups,dc=engines,dc=internal" } )
+
+    get '/users/accounts/', uid: 'testuser'
+    expect( response[:groups] ).to include( { name: "administrators", dn: "cn=administrators,ou=Groups,dc=engines,dc=internal" } )
+
+    delete '/users/accounts/groups', user_uid: 'testuser', group_dns: [
+      "cn=administrators,ou=Groups,dc=engines,dc=internal" ]
+    expect( response ).to eq( {} )
+
+    get '/users/accounts/', uid: 'testuser'
+    expect( response[:groups] ).to_not include( {
+      name: "administrators", dn: "cn=administrators,ou=Groups,dc=engines,dc=internal" } )
+  end
+
   it 'delete :users :account' do
     delete '/users/accounts/', uid: 'testuser'
     expect( response ).to eq( {} )

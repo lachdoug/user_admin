@@ -8,9 +8,10 @@ class V0
             def index_users_groups_query( ldap )
               result = []
               ldap.search(
-                filter: Net::LDAP::Filter.eq( "objectClass", "posixGroup" ),
+                filter: Net::LDAP::Filter.present( "objectClass" ),
                 base: "ou=Groups,dc=engines,dc=internal" ) do |entry|
-                result << { name: entry.cn[0], dn: entry.dn }
+                  # byebug
+                result << { name: entry.cn[0], dn: entry.dn } unless entry.objectClass[0] == "organizationalUnit"
               end
               result
             end

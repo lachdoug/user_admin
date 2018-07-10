@@ -17,7 +17,7 @@ describe V0::Api::Controllers::Users::Accounts::Emails::DistributionGroupsContro
   end
 
   it 'Creates :users :account :email :distribution_group' do
-    get '/users/accounts/email/distribution_groups/new', user_uid: 'asassasa'
+    get '/users/accounts/email/distribution_groups/new', user_uid: 'testuser'
     expect( response[:distribution_groups] ).to include( 'testdistribution@testdomain.fake' )
 
     post '/users/accounts/email/distribution_groups/', user_uid: 'testuser', distribution_group: { name: 'testdistribution@testdomain.fake' }
