@@ -25,10 +25,10 @@ class V0 < Sinatra::Base
 
   # Settings
 
-  if Sinatra::Base.development?
-    ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-    ENV["ldap_password"] = "e4d29c5c"
-  end
+  # if Sinatra::Base.development?
+  #   ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+  #   ENV["ldap_password"] = "e4d29c5c"
+  # end
 
   set logging: true
   set dump_errors: true # Sinatra::Base.development?
@@ -47,6 +47,7 @@ class V0 < Sinatra::Base
 
   before do
     if params[:token_owner] == "sysadmin"
+      # byebug
       @ldap_username = settings.ldap_admin_username
       @ldap_password = settings.ldap_admin_password
     else
