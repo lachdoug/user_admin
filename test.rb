@@ -2,8 +2,8 @@ ENV['RACK_ENV'] = 'test'
 $ldap_dn = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
 $ldap_password = "e4d29c5c"
 
-ENV["ldap_admin_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-ENV["ldap_admin_password"] = "e4d29c5c"
+ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+ENV["ldap_password"] = "e4d29c5c"
 
 require_relative 'v0/module'
 require 'rspec'

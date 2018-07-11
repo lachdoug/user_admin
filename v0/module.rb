@@ -34,8 +34,8 @@ class V0 < Sinatra::Base
   set dump_errors: true # Sinatra::Base.development?
   set public_folder: 'public'
   set show_exceptions: false
-  set ldap_admin_dn: ENV["ldap_admin_dn"]
-  set ldap_admin_password: ENV["ldap_admin_password"]
+  set ldap_admin_dn: ENV["ldap_dn"]
+  set ldap_admin_password: ENV["ldap_password"]
 
   # Services
 
