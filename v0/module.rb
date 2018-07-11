@@ -11,7 +11,7 @@ class V0 < Sinatra::Base
   end
 
   def log(text)
-    $stderr.puts text
+    $stdout.puts text
   end
 
   # Parse JSON params
