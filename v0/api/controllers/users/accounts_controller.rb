@@ -35,7 +35,7 @@ class V0
           # @return [Hash] :users :account details
           put '/users/accounts/' do
             # byebug
-            ldap.update_users_account( params[:uid], params[:account], @ldap_username )
+            ldap.update_users_account( params[:uid], params[:account] )
             ldap.show_users_account params[:uid]
           end
 

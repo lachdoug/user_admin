@@ -74,11 +74,12 @@ class V0
             end
 
 
-            def update_users_account_query(ldap, uid, user, admin_dn)
+            def update_users_account_query(ldap, uid, user)
 
               entry = find_user_entry_helper ldap, uid
-              raise Error::Operation.new "Can't change your own name." if entry.dn == admin_dn
               old_dn = entry.dn
+              raise Error::Operation.new "Can't change name of account when member of administrator group." if index_users_account_groupofnames_groups_query(ldap, old_dn).any?
+
               old_rdn = "cn=#{entry.givenname[0]} #{entry.sn[0]}"
 
               puts "old dn #{old_dn}"
@@ -90,21 +91,22 @@ class V0
 
               replace_attribute_value_on_entry_helper( ldap, entry, "givenname", user[:first_name] ) &&
               replace_attribute_value_on_entry_helper( ldap, entry, "sn", user[:last_name] ) &&
-              result = update_entry_rdn_helper( ldap, entry, new_rdn )
+              # result =
+              update_entry_rdn_helper( ldap, entry, new_rdn )
 
-              if result
-                new_dn = old_dn.sub( old_rdn, new_rdn )
-                puts "new dn #{new_dn}"
-                puts "new rdn #{new_rdn}"
-                groups = index_users_account_groupofnames_groups_query(ldap, old_dn)
-                groups.each do |group|
-                  # byebug
-                  delete_users_account_groupofnames_group_query( ldap, old_dn, group[:dn] )
-                  create_users_account_groupofnames_group_query( ldap, new_dn, group[:dn] )
-                end
-              end
-
-              result
+              # if result
+              #   new_dn = old_dn.sub( old_rdn, new_rdn )
+              #   puts "new dn #{new_dn}"
+              #   puts "new rdn #{new_rdn}"
+              #   groups = index_users_account_groupofnames_groups_query(ldap, old_dn)
+              #   groups.each do |group|
+              #     # byebug
+              #     delete_users_account_groupofnames_group_query( ldap, old_dn, group[:dn] )
+              #     create_users_account_groupofnames_group_query( ldap, new_dn, group[:dn] )
+              #   end
+              # end
+              #
+              # result
 
             end
 
