@@ -30,7 +30,7 @@ class V0
             def create_users_account( account )
               net_ldap do |ldap|
                 begin
-                  $stdout.puts "Account: #{account}"
+                  $stderr.puts "Account: #{account}"
                   raise Error unless create_users_account_query( ldap, account )
                   return account
                 rescue Error => e
