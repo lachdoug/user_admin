@@ -26,7 +26,7 @@ class V0 < Sinatra::Base
   # Settings
 
   # if Sinatra::Base.development?
-  #   ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+  #   ENV["ldap_admin_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
   #   ENV["ldap_password"] = "e4d29c5c"
   # end
 
@@ -34,8 +34,8 @@ class V0 < Sinatra::Base
   set dump_errors: true # Sinatra::Base.development?
   set public_folder: 'public'
   set show_exceptions: false
-  set ldap_admin_username: ENV["ldap_dn"]
-  set ldap_admin_password: ENV["ldap_password"]
+  set ldap_admin_dn: ENV["ldap_admin_dn"]
+  set ldap_admin_password: ENV["ldap_admin_password"]
 
   # Services
 
@@ -47,7 +47,8 @@ class V0 < Sinatra::Base
 
   before do
     if params[:token_owner] == "sysadmin"
-      @ldap_username = settings.ldap_admin_username
+      # $stderr.out "LDAP dn: #{ settings.ldap_admin_dn }"
+      @ldap_username = settings.ldap_admin_dn
       @ldap_password = settings.ldap_admin_password
     else
       @ldap_username = params[:token_owner]

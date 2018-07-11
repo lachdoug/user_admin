@@ -1,6 +1,9 @@
 ENV['RACK_ENV'] = 'test'
-ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-ENV["ldap_password"] = "e4d29c5c"
+$ldap_dn = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+$ldap_password = "e4d29c5c"
+
+ENV["ldap_admin_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
+ENV["ldap_admin_password"] = "e4d29c5c"
 
 require_relative 'v0/module'
 require 'rspec'
@@ -30,27 +33,27 @@ def clear_response
 end
 
 def get route, params={}
-  params.merge!( { token_owner: "sysadmin" } ) unless route == '/dn_lookup'
+  params.merge!( { token_owner: $ldap_dn, ldap_password: $ldap_password } ) unless route == '/dn_lookup'
   clear_response
   super
 end
 
 def post route, params={}
-  params.merge!( { token_owner: "sysadmin" } )
+  params.merge!( { token_owner: $ldap_dn, ldap_password: $ldap_password } )
   params = params.to_json
   clear_response
   super route, params, { 'CONTENT_TYPE' => "application/json" }
 end
 
 def put route, params={}
-  params.merge!( { token_owner: "sysadmin" } )
+  params.merge!( { token_owner: $ldap_dn, ldap_password: $ldap_password } )
   params = params.to_json
   clear_response
   super route, params, { 'CONTENT_TYPE' => "application/json" }
 end
 
 def delete route, params={}
-  params.merge!( { token_owner: "sysadmin" } )
+  params.merge!( { token_owner: $ldap_dn, ldap_password: $ldap_password } )
   # params = params.to_json
   clear_response
   # super route, params, { 'CONTENT_TYPE' => "application/json" }

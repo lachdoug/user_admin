@@ -74,14 +74,37 @@ class V0
             end
 
 
-            def update_users_account_query(ldap, uid, user)
+            def update_users_account_query(ldap, uid, user, admin_dn)
 
               entry = find_user_entry_helper ldap, uid
-              newrdn = "cn=#{user[:first_name]} #{user[:last_name]}"
+              raise Error::Operation.new "Can't change your own name." if entry.dn == admin_dn
+              old_dn = entry.dn
+              old_rdn = "cn=#{entry.givenname[0]} #{entry.sn[0]}"
+
+              puts "old dn #{old_dn}"
+              puts "old rdn #{old_rdn}"
+
+              new_rdn = "cn=#{user[:first_name]} #{user[:last_name]}"
+
+# byebug
 
               replace_attribute_value_on_entry_helper( ldap, entry, "givenname", user[:first_name] ) &&
               replace_attribute_value_on_entry_helper( ldap, entry, "sn", user[:last_name] ) &&
-              update_entry_rdn_helper( ldap, entry, newrdn )
+              result = update_entry_rdn_helper( ldap, entry, new_rdn )
+
+              if result
+                new_dn = old_dn.sub( old_rdn, new_rdn )
+                puts "new dn #{new_dn}"
+                puts "new rdn #{new_rdn}"
+                groups = index_users_account_groupofnames_groups_query(ldap, old_dn)
+                groups.each do |group|
+                  # byebug
+                  delete_users_account_groupofnames_group_query( ldap, old_dn, group[:dn] )
+                  create_users_account_groupofnames_group_query( ldap, new_dn, group[:dn] )
+                end
+              end
+
+              result
 
             end
 

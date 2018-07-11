@@ -39,10 +39,10 @@ class V0
               end
             end
 
-            def update_users_account( uid, account )
+            def update_users_account( uid, account, admin_dn )
               net_ldap do |ldap|
                 begin
-                  raise Error unless update_users_account_query( ldap, uid, account )
+                  raise Error unless update_users_account_query( ldap, uid, account, admin_dn )
                   return account
                 rescue Error => e
                   ldap_op_error( ldap, "Failed to update user account." )
