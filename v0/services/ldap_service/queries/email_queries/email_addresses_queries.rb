@@ -6,9 +6,10 @@ class V0
           module EmailAddressesQueries
 
             def index_email_email_addresses_query(ldap)
-              index_email_mailboxes_email_addresses_query(ldap) +
+              addresses = index_email_mailboxes_email_addresses_query(ldap) +
               index_email_aliases_email_addresses_query(ldap) +
               index_email_distribution_groups_email_addresses_query(ldap)
+              addresses.sort_by { |address| address[:email_address] }
             end
 
 

@@ -56,7 +56,7 @@ class V0
                   name: entry.cn.join(' '),
                 }
               end
-              result
+              result.sort_by { |account| account[:name] }
             end
 
 
