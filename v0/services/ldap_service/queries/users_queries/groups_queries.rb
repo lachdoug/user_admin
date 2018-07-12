@@ -13,7 +13,7 @@ class V0
                   # byebug
                 result << { name: entry.cn[0], dn: entry.dn } unless entry.objectClass[0] == "organizationalUnit"
               end
-              result.sort_by { |group| group[:name] }
+              result.sort_by { |group| group[:name].downcase }
             end
 
             def show_users_group_query( ldap, dn )

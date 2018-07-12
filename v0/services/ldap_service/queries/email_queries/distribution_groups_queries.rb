@@ -17,7 +17,7 @@ class V0
                   name: entry.cn[0],
                   description: entry.respond_to?(:description) ? entry.description[0] : ""
                 }
-              end
+              end.sort_by { |distribution_group| distribution_group[:name].downcase }
             end
 
             def show_email_distribution_group_query( ldap, name )
@@ -26,7 +26,7 @@ class V0
               {
                 name: entry.cn[0],
                 description: entry.respond_to?(:description) ? entry.description[0] : "",
-                email_addresses: entry.respond_to?(:memberuid) ? entry.memberuid : []
+                email_addresses: entry.respond_to?(:memberuid) ? entry.memberuid.sort : []
               }
             end
 

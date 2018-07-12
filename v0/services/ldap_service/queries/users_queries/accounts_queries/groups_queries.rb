@@ -37,7 +37,7 @@ class V0
               def index_users_account_groups_query(ldap, user_uid)
                 user_dn = find_user_entry_helper(ldap, user_uid).dn
                 ( index_users_account_posix_groups_query(ldap, user_uid) +
-                index_users_account_groupofnames_groups_query(ldap, user_dn) ).sort_by { |group| group[:name] }
+                index_users_account_groupofnames_groups_query(ldap, user_dn) ).sort_by { |group| group[:name].downcase }
               end
 
               def index_users_account_posix_groups_query(ldap, user_uid)

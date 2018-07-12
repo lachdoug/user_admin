@@ -11,7 +11,7 @@ describe V0::Api::Controllers::Users::GroupsController do
     get '/users/groups'
     dn = response.first[:dn]
     get '/users/groups/', dn: dn
-    expect( response[:name] ).to eq( "Users" )
+    expect( response[:name] ).to be_a( String )
     expect( response[:dn] ).to eq( dn )
     expect( response[:members] ).to be_a( Array )
   end
