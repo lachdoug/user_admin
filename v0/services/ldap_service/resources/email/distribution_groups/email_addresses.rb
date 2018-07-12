@@ -24,7 +24,7 @@ class V0
               def create_email_distribution_group_email_address( distribution_list_name, email_address )
                 net_ldap do |ldap|
                   begin
-                    raise Error unless email_address && !email_address[:email_address].empty?
+                    raise Error unless email_address && email_address[:address]
                     raise Error unless create_email_distribution_group_email_address_query( ldap, distribution_list_name, email_address[:address] )
                     return email_address
                   rescue Error => e
@@ -41,6 +41,7 @@ class V0
                 # raise Error.new "Requires address." unless address
                 net_ldap do |ldap|
                   begin
+                    # raise Error unless email_address && email_address[:address]
                     raise Error unless delete_email_distribution_group_email_address_query( ldap, distribution_list_name, address )
                     return {}
                   rescue Error => e
