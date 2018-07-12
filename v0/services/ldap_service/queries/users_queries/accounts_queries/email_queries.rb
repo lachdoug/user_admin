@@ -22,8 +22,8 @@ class V0
                       ldap, [ mailbox ] + email_aliases )
                   {
                     mailbox: mailbox,
-                    aliases: email_aliases,
-                    distribution_groups: distribution_groups
+                    aliases: email_aliases.sort,
+                    distribution_groups: distribution_groups.sort_by { |distribution_group| distribution_group[:name] }
                   }
                 else
                   {}
