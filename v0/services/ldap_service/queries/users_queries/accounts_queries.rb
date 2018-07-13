@@ -17,6 +17,14 @@ class V0
               uid = user[:uid]
               cn = "#{user[:first_name]} #{user[:last_name]}"
               dn = "cn=#{cn},ou=People,dc=engines,dc=internal"
+
+              begin
+                existing_user = find_user_entry_helper ldap, uid
+              rescue V0::Services::LdapService::Error::EntryMissing
+              ensure
+                raise Error::Operation.new "Account already exists." if existing_user
+              end
+
               uidnumber = next_available_uidnumber_helper ldap
               sha_password = '{SHA}' + Base64.encode64(Digest::SHA1.digest( user[:password] )).chomp!
 
