@@ -10,9 +10,15 @@ class V0
             end
           end
 
-          def show_users_group( name )
+          def show_users_group( group_dn )
             net_ldap do |ldap|
-              show_users_group_query ldap, name
+              entry = find_entry_by_dn_helper(ldap, group_dn)
+              if entry.objectClass.include? "posixGroup"
+                raise Error unless result = show_users_posix_group_query( ldap, group_dn )
+              else
+                raise Error unless result = show_users_groupofnames_group_query( ldap, group_dn )
+              end
+              result
             end
           end
 

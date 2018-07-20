@@ -16,7 +16,19 @@ class V0
               result.sort_by { |group| group[:name].downcase }
             end
 
-            def show_users_group_query( ldap, dn )
+            def show_users_groupofnames_group_query( ldap, dn )
+              entry = find_entry_by_dn_helper ldap, dn
+              member_dns = entry.respond_to?(:member) ? entry.member : []
+              members = member_dns.map do |member_dn|
+                member_entry = find_entry_by_dn_helper ldap, member_dn
+                member_entry.uid[0]
+              end
+              { name: entry.cn[0],
+                dn: dn,
+                members: members }
+            end
+
+            def show_users_posix_group_query( ldap, dn )
               entry = find_entry_by_dn_helper ldap, dn
               { name: entry.cn[0],
                 dn: dn,

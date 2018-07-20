@@ -45,7 +45,7 @@ class V0
                 net_ldap do |ldap|
                   begin
                     email = show_users_account_email_query( ldap, user_uid )
-                    raise Error unless email[:aliases].empty? && email[:distribution_groups].empty?
+                    raise Error if email[:aliases] && email[:aliases].any? && email[:distribution_groups] && email[:distribution_groups].any?
                     raise Error unless delete_users_account_email_query( ldap, user_uid )
                     return {}
                   rescue Error => e
