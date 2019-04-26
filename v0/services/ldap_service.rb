@@ -23,7 +23,6 @@ class V0
       include Resources
 
       def initialize(auth)
-        puts auth
         @auth = auth
       end
 

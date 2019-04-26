@@ -1,9 +1,9 @@
 ENV['RACK_ENV'] = 'test'
-$ldap_dn = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-$ldap_password = "e4d29c5c"
-
 ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-ENV["ldap_password"] = "e4d29c5c"
+ENV["ldap_password"] = "3dee3b9b"
+
+$ldap_dn = ENV["ldap_dn"]
+$ldap_password = ENV["ldap_password"]
 
 require_relative 'v0/module'
 require 'rspec'
@@ -19,10 +19,6 @@ end
 def app
   V0
 end
-
-# def ldap
-#   @ldap ||= V0::Services::LdapService.new
-# end
 
 def response
   @response ||= JSON.parse( last_response.body, symbolize_names: true )
@@ -54,9 +50,7 @@ end
 
 def delete route, params={}
   params.merge!( { token_owner: $ldap_dn, ldap_password: $ldap_password } )
-  # params = params.to_json
   clear_response
-  # super route, params, { 'CONTENT_TYPE' => "application/json" }
   super
 end
 
@@ -66,12 +60,5 @@ rescue V0::Services::LdapService::Error::EntryMissing,
        V0::Services::LdapService::Error::Operation
 end
 
-
-
-# describe V0 do
-#   it 'restores ldap to initial state' do
-#     ldap.reset_ldap
-#   end
-# end
 
 Dir.glob( [ "./spec/**/*.rb" ] ).each { |file| require file }

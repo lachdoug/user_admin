@@ -12,13 +12,13 @@ Sinatra (module style, with config.ru)
 
 Services
 --------
-Neds LDAP.
+Needs LDAP. Expects hostname to be 'ldap'.
 
 No DB. No Volumes.
 
 Tests
 -----
-`rspec test.rb`
+`bundle exec rspec test.rb`
 
 Docs
 ----
