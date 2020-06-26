@@ -54,11 +54,11 @@ class V0
             end
 
             def update_email_distribution_group_description_query( ldap, entry, distribution_group )
-              distribution_group[:description].nil? ||
+              description = distribution_group[:description] || ''
               if entry.respond_to?(:description)
-                replace_attribute_value_on_entry_helper ldap, entry, "description", distribution_group[:description]
+                replace_attribute_value_on_entry_helper ldap, entry, "description", description
               else
-                add_attribute_value_to_entry_helper ldap, entry, "description", distribution_group[:description]
+                add_attribute_value_to_entry_helper ldap, entry, "description", description
               end
             end
 

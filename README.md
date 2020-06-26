@@ -27,3 +27,6 @@ Generate docs `yardoc v0/* --plugin yard-sinatra`
 
 Environment
 -----------
+Set credentials for the sysadmin user:
+ENV["ldap_dn"]
+ENV["ldap_password"]

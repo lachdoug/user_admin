@@ -18,7 +18,6 @@ describe V0::Api::Controllers::Users::Accounts::Emails::AliasesController do
     expect( response ).to eq( {} )
   end
 
-
   it 'Cleans up after tests' do
     delete '/email/default_domain'
     delete '/email/domains/', name: 'testdomain.fake'

@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 ENV["ldap_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-ENV["ldap_password"] = "3dee3b9b"
+ENV["ldap_password"] = "36514a66"
 
 $ldap_dn = ENV["ldap_dn"]
 $ldap_password = ENV["ldap_password"]

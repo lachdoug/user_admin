@@ -25,14 +25,8 @@ class V0 < Sinatra::Base
 
   # Settings
 
-  # if Sinatra::Base.development?
-  #   ENV["ldap_admin_dn"] = "uid=uadmin,ou=hosts,ou=Engines,dc=engines,dc=internal"
-  #   ENV["ldap_password"] = "e4d29c5c"
-  # end
-
   set logging: true
-  set dump_errors: true # Sinatra::Base.development?
-  set public_folder: 'public'
+  set dump_errors: true
   set show_exceptions: false
   set ldap_admin_dn: ENV["ldap_dn"]
   set ldap_admin_password: ENV["ldap_password"]
@@ -47,7 +41,6 @@ class V0 < Sinatra::Base
 
   before do
     if params[:token_owner] == "sysadmin"
-      # $stderr.out "LDAP dn: #{ settings.ldap_admin_dn }"
       @ldap_username = settings.ldap_admin_dn
       @ldap_password = settings.ldap_admin_password
     else
@@ -83,7 +76,7 @@ class V0 < Sinatra::Base
   # Handle errors
 
   not_found do
-    return 404, "Not a valid v0 route"
+    return 404, "Not a valid route."
   end
 
   error do |error|
